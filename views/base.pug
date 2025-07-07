@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Natours | #{title}
+    link(rel='stylesheet' href='/css/style.css')
+    link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
+    link(rel='stylesheet' href="https://fonts.googleapis.com/css?family=Lato:300,300i,700")
+    script(src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js', defer)
+    link(href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css", rel="stylesheet")
+
+    block head
+
+  body
+    //Header
+    include _header
+
+    // Content
+    block content
+      
+
+    // Footer
+    include _footer
+
+    // After all content and before closing body (OR inside tour.pug if needed)
+    //- script(src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js")
+    //- link(href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet")
+    //- script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.10.0/axios.min.js")
+
+    //- script(src="/js/login.js")
+    block scripts
+      script(src="/js/bundle.js")
+
+   
+    
