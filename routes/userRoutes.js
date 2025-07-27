@@ -1,18 +1,20 @@
-const express = require('express');
-const userController = require('../controllers/userController');
-const authController = require('../controllers/authController');
+import express from 'express';
+import * as userController from '../controllers/userController.js';
+import { protect, restrictTo } from '../controllers/authController.js';
+import * as authController from '../controllers/authController.js';
 
 const router = express.Router();
 
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
+router.get('/logout', authController.logout);
 
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
 
 //router is kind of mini application hence we can use the middleware using .use() method
 // And this will be executed first in the applicatoin, protecting all the routes below
-router.use(authController.protect);
+router.use(protect);
 
 router.patch('/updateMyPassword', authController.updatePassword);
 
@@ -26,6 +28,8 @@ router.get(
 router.patch(
   '/updateMyDetail',
 
+  userController.uploadUserPhoto,
+  userController.resizeUserPhoto,
   userController.updateMe,
 );
 
@@ -35,7 +39,7 @@ router.delete(
   userController.deleteMe,
 );
 
-router.use(authController.restrictTo('admin'));
+router.use(restrictTo('admin'));
 
 router
   .route('/')
@@ -47,4 +51,4 @@ router
   .patch(userController.updateUser)
   .delete(userController.deleteUser);
 
-module.exports = router;
+export default router;

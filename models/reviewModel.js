@@ -1,6 +1,5 @@
-const mongoose = require('mongoose');
-
-const Tour = require('./tourModel');
+import mongoose from 'mongoose';
+import Tour from './tourModel.js';
 
 const reviewSchema = new mongoose.Schema(
   {
@@ -100,6 +99,4 @@ reviewSchema.post(/^findOneAnd/, async function (next) {
   await this.r.constructor.calcAverageRating(this.r.tour);
 });
 
-const Review = mongoose.model('Review', reviewSchema);
-
-module.exports = Review;
+export default mongoose.model('Review', reviewSchema);

@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 // eslint-disable-next-line import/no-extraneous-dependencies
-const slugify = require('slugify');
-// const User = require('./userModel');
+import slugify from 'slugify';
+// import User from './userModel.js';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-// const validator = require('validator');
+// import validator from 'validator';
 
 // validator.isAlpha('foo@bar.com'); //=> true
 
@@ -100,7 +100,7 @@ const tourSchema = new mongoose.Schema(
         enum: ['Point'],
       },
       coordinates: [Number],
-      adress: String,
+      address: String,
       description: String,
     },
     locations: [
@@ -209,5 +209,4 @@ tourSchema.pre('aggregate', function (next) {
 
 //Creating Model, Variable name is in capital to distinguish it is schema.
 const Tour = mongoose.model('Tour', tourSchema);
-
-module.exports = Tour;
+export default Tour;

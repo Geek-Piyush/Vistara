@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+import app from './app.js';
 
 process.on('uncaughtException', (err) => {
   console.log('Unhadled Rejection');
@@ -10,8 +12,7 @@ process.on('uncaughtException', (err) => {
 });
 
 dotenv.config({ path: './config.env' });
-
-const app = require('./app');
+console.log('[Stripe Init] Key:', process.env.STRIPE_SECRET_KEY);
 
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',

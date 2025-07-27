@@ -1,6 +1,10 @@
 {
   "extends": ["airbnb", "prettier", "plugin:node/recommended"],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "import"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2022
+  },
   "rules": {
     "prettier/prettier": "off",
     "spaced-comment": "off",
@@ -14,6 +18,28 @@
     "no-underscore-dangle": "off",
     "class-methods-use-this": "off",
     "prefer-destructuring": ["error", { "object": true, "array": false }],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "req|res|next|val|err" }]
+    "no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "req|res|next|val|err" }
+    ],
+
+    // 👇 Allow explicit file extensions in import paths
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "always",
+        "mjs": "always",
+        "jsx": "always"
+      }
+    ],
+
+    // 👇 Allow import of dev dependencies like nodemon, eslint, etc.
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ]
   }
 }

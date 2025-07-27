@@ -56,4 +56,4 @@ class APIFewatures {
   }
 }
 
-module.exports = APIFewatures;
+export default APIFewatures;

@@ -1,8 +1,8 @@
-const crypto = require('crypto');
-const mongoose = require('mongoose');
-const validator = require('validator');
+import crypto from 'crypto';
+import mongoose from 'mongoose';
+import validator from 'validator';
 // eslint-disable-next-line import/no-extraneous-dependencies
-const bcrypt = require('bcryptjs');
+import bcrypt from 'bcryptjs';
 
 validator.isEmail('foo@bar.com'); //=> true
 
@@ -26,6 +26,7 @@ const userSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
+    default: 'default.jpg',
   },
   role: {
     type: String,
@@ -120,5 +121,4 @@ userSchema.methods.createPasswordResetToken = function () {
 };
 
 const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+export default User;

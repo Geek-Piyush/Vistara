@@ -1,8 +1,8 @@
-const AppError = require('../utils/appError');
-const catchAsync = require('../utils/catchAsync');
-const APIFeatures = require('../utils/apiFeatures');
+import AppError from '../utils/appError.js';
+import catchAsync from '../utils/catchAsync.js';
+import APIFeatures from '../utils/apiFeatures.js';
 
-exports.deleteOne = (Model) =>
+export const deleteOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndDelete(req.params.id);
     // const tour = Tour.findById(req.params.id);
@@ -15,7 +15,7 @@ exports.deleteOne = (Model) =>
     });
   });
 
-exports.updateOne = (Model) =>
+export const updateOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -34,7 +34,7 @@ exports.updateOne = (Model) =>
     });
   });
 
-exports.createOne = (Model) =>
+export const createOne = (Model) =>
   catchAsync(async (req, res) => {
     const newDoc = await Model.create(req.body);
 
@@ -46,7 +46,7 @@ exports.createOne = (Model) =>
     });
   });
 
-exports.getOne = (Model, PopulateOption) =>
+export const getOne = (Model, PopulateOption) =>
   catchAsync(async (req, res, next) => {
     let query = Model.findById(req.params.id);
     if (PopulateOption) query = query.populate(PopulateOption);
@@ -63,7 +63,7 @@ exports.getOne = (Model, PopulateOption) =>
     });
   });
 
-exports.getAll = (Model) =>
+export const getAll = (Model) =>
   catchAsync(async (req, res, next) => {
     //To allow for nested GETeviews on Tour (Small hack)
     let filter = {};

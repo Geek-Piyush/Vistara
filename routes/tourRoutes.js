@@ -1,7 +1,7 @@
-const express = require('express');
-const tourController = require('../controllers/tourController');
-const authController = require('../controllers/authController');
-const reviewRouter = require('./reviewRoutes');
+import express from 'express';
+import * as tourController from '../controllers/tourController.js';
+import * as authController from '../controllers/authController.js';
+import reviewRouter from './reviewRoutes.js';
 
 const router = express.Router();
 
@@ -51,7 +51,13 @@ router
 router
   .route('/:id')
   .get(tourController.getTour)
-  .patch(tourController.updateTour)
+  .patch(
+    authController.protect,
+    authController.restrictTo('admin', 'least-guide'),
+    tourController.uploadTourImages,
+    tourController.resizeTourImages,
+    tourController.updateTour,
+  )
   .delete(
     authController.protect,
     authController.restrictTo('admin', 'lead-guide'),
@@ -59,4 +65,4 @@ router
   );
 
 // Export the router
-module.exports = router;
+export default router;

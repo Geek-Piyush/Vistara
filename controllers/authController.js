@@ -1,34 +1,47 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-useless-path-segments */
-const { promisify } = require('util');
-const crypto = require('crypto');
-const jwt = require('jsonwebtoken');
-const User = require('./../models/userModel');
-const catchAsync = require('./../utils/catchAsync');
-const AppError = require('../utils/appError');
-const sendEmail = require('../utils/email');
+import { promisify } from 'util';
+import crypto from 'crypto';
+import jwt from 'jsonwebtoken';
+import User from '../models/userModel.js';
+import catchAsync from '../utils/catchAsync.js';
+import AppError from '../utils/appError.js';
+import Email from '../utils/email.js';
 
-const signToken = (id) =>
-  jwt.sign({ id }, process.env.JWT_SECRET, {
+// Function to generate a signed JWT token
+const signToken = (id) => {
+  console.log('[signToken] Creating JWT for user ID:', id);
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
+};
 
+// Cookie options for sending JWT in a cookie
 const cookieOptions = {
   expires: new Date(
     Date.now() + process.env.JWT_COOKIES_EXPIRES_IN * 24 * 60 * 60 * 1000,
   ),
+
   httpOnly: true,
   sameSite: 'Lax',
   secure: false,
 };
 
+// Use secure cookies in production
 if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
+// Function to create and send token
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
+  console.log('[createSendToken] JWT token generated:', token);
   res.cookie('jwt', token, cookieOptions);
+  console.log('[createSendToken] Cookie set with options:', cookieOptions);
+  console.log(
+    '[createSendToken] Cookie expiration date:',
+    cookieOptions.expires,
+  );
 
-  //Its only setting undefined in response object not database
+  // Only removing password from the output object, not the DB
   user.password = undefined;
   res.status(statusCode).json({
     status: 'success',
@@ -39,14 +52,11 @@ const createSendToken = (user, statusCode, res) => {
   });
 };
 
-exports.signup = catchAsync(async (req, res, next) => {
-  // Using the commented out line of code
-  // We are allowing the user to input all sort of data.
-  // This may allow user to login as user.
+// Signup Controller
+export const signup = catchAsync(async (req, res, next) => {
+  console.log('[signup] Incoming signup request body:', req.body);
 
-  // const newUser = await User.create(req.body);
-
-  // We can fix this using :
+  // Safer way of accepting input fields explicitly
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
@@ -55,125 +65,157 @@ exports.signup = catchAsync(async (req, res, next) => {
     role: req.body.role,
   });
 
-  //sign({payload object}, secret, extra_option-here we used expiration time for token)
-  // const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
-  //   expiresIn: process.env.JWT_EXPIRES_IN,
-  // });
+  // Determine redirect URL based on environment
+  let url;
+  if (process.env.NODE_ENV === 'development') {
+    url = `${req.protocol}://localhost:${process.env.PORT || 3000}/me`;
+  } else {
+    url = `${req.protocol}://${req.get('host')}/me`;
+  }
+
+  console.log('[signup] Welcome email URL:', url);
+  await new Email(newUser, url).sendWelcome();
 
   createSendToken(newUser, 201, res);
 });
 
-exports.login = catchAsync(async (req, res, next) => {
+// Login Controller
+export const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
+  console.log('[login] Login request with email:', email);
 
-  // 1) Validate that both email and password are provided
-
+  // 1) Validate input
   if (!email || !password) {
+    console.warn('[login] Email or password not provided');
     return next(new AppError('Please provide email and password!', 400));
   }
 
-  // 2) Check if user exists and the password is correct
-  // Note: The password field is set to select: false in the User schema,
-  // so we need to explicitly include it using .select('+password')
+  // 2) Check user and password
   const user = await User.findOne({ email }).select('+password');
+  if (!user) console.warn('[login] No user found for email:', email);
 
-  // Normally, we'd store the password check in a variable for clarity.
-  // But if `user` is null, calling a method on it would throw an error.
-  // So we combine both checks in the if-statement for safety.
-
-  if (!user || !(await user.correctPassword(password, user.password))) {
+  const passwordCorrect =
+    user && (await user.correctPassword(password, user.password));
+  if (!user || !passwordCorrect) {
+    console.warn(
+      '[login] Incorrect email or password attempt for email:',
+      email,
+    );
     return next(new AppError('Incorrect email or password', 401));
   }
-  // 3) If authentication is successful, generate and send JWT token to the client
 
+  console.log('[login] User authenticated successfully:', user.email);
+
+  // 3) Send token
   createSendToken(user, 200, res);
 });
 
-exports.protect = catchAsync(async (req, res, next) => {
-  // 1) Getting token from header or cookie
+// Logout Controller
+export const logout = catchAsync(async (req, res, next) => {
+  console.log('[logout] Logging out user');
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+    sameSite: 'Lax',
+    secure: false,
+  });
+
+  res.status(200).json({ status: 'success' });
+});
+
+// Protect middleware for route guarding
+export const protect = catchAsync(async (req, res, next) => {
   let token;
+
+  console.log('[protect] Checking for token in header or cookie');
 
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
+    console.log('[protect] Token found in header');
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
+    console.log('[protect] Token found in cookies');
   }
 
-  // 2) If no token found, throw error
   if (!token) {
+    console.warn('[protect] No token found');
     return next(new AppError('You are not logged in. Please login', 401));
   }
 
-  // 3) Verify token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  console.log('[protect] Decoded JWT payload:', decoded);
 
-  // 4) Check if user still exists
   const currentUser = await User.findById(decoded.id);
   if (!currentUser) {
+    console.warn('[protect] No user found for decoded token ID');
     return next(
       new AppError('The user belonging to this token no longer exists.', 401),
     );
   }
 
-  // 5) Check if user changed password after token was issued
   if (currentUser.changedPasswordAfter(decoded.iat)) {
+    console.warn('[protect] Password was changed after token was issued');
     return next(
       new AppError('User recently changed password. Please log in again.', 401),
     );
   }
 
-  // 6) Grant access
   req.user = currentUser;
+  res.locals.user = currentUser;
   next();
 });
 
-// We cant pass the arguent inside the middleware.
-// Hence we have to wrap the middleware with the function.
-
-// eslint-disable-next-line arrow-body-style
-exports.restrictTo = (...roles) => {
-  return (req, res, next) => {
-    // Spread operator is used to store all the roles in array.
-    // e.g. roles: ['admin', 'lead-guide'].
+// Restrict routes to specific user roles
+export const restrictTo =
+  (...roles) =>
+  (req, res, next) => {
+    console.log('[restrictTo] Allowed roles:', roles);
     if (!roles.includes(req.user.role)) {
-      next(new AppError('You do not have permission perform this action', 403));
+      console.warn('[restrictTo] Access denied for role:', req.user.role);
+      return next(
+        new AppError('You do not have permission perform this action', 403),
+      );
     }
     next();
   };
-};
 
-exports.forgotPassword = catchAsync(async (req, res, next) => {
-  // 1) get user based on posted email
+// Forgot Password Controller
+export const forgotPassword = catchAsync(async (req, res, next) => {
+  console.log(
+    '[forgotPassword] Password reset requested for email:',
+    req.body.email,
+  );
+
   const user = await User.findOne({ email: req.body.email });
 
-  if (!user)
+  if (!user) {
+    console.warn('[forgotPassword] No user found with email:', req.body.email);
     return next(
       new AppError('No user to be found with provided email address!'),
     );
+  }
 
-  // 2) Generate the random reset token
   const resetToken = user.createPasswordResetToken();
-
   await user.save({ validateBeforeSave: false });
 
-  // 3) Send it to the user's email
   try {
-    const resetURL = `${req.protocol}://${req.get('host')}/api/v1/ users/resetPassword/${resetToken}`;
+    const resetURL = `${req.protocol}://${req.get(
+      'host',
+    )}/api/v1/users/resetPassword/${resetToken}`;
+    console.log('[forgotPassword] Sending reset URL:', resetURL);
 
-    const message = `Forgot your Password? Submit a PATCH request with your new password and passwordConfirm to: ${resetURL}. If you didn't forgot the password then kindly ignore the email `;
-    await sendEmail({
-      email: user.email,
-      subject: 'Your password reset token (Valid for only 10 minutes)',
-      message,
-    });
+    await new Email(user, resetURL).sendPasswordReset();
+
     res.status(200).json({
       status: 'Success',
       message: 'Token sent to email',
     });
   } catch (err) {
+    console.error('[forgotPassword] Error sending reset email:', err);
+
     user.createPasswordResetToken = undefined;
     user.createPasswordResetExpires = undefined;
     await user.save({ validateBeforeSave: false });
@@ -187,8 +229,10 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   }
 });
 
-exports.resetPassword = catchAsync(async (req, res, next) => {
-  // 1) Get user based on token
+// Reset Password Controller
+export const resetPassword = catchAsync(async (req, res, next) => {
+  console.log('[resetPassword] Token received:', req.params.token);
+
   const hashedToken = crypto
     .createHash('sha256')
     .update(req.params.token)
@@ -199,62 +243,73 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     passwordResetExpires: { $gt: Date.now() },
   });
 
-  // 2) If token has not expired, anf there is user, set the new password
   if (!user) {
+    console.warn('[resetPassword] Token expired or invalid');
     return next(new AppError('Token has expired or invalid', 400));
   }
+
   user.password = req.body.password;
   user.passwordConfirm = req.body.passwordConfirm;
   user.passwordResetToken = undefined;
   user.passwordResetExpires = undefined;
   await user.save();
-  // 3) Update changedPasswordAt property for the user
-  // 4) Log the user in, send JWT
+
+  console.log('[resetPassword] Password reset successful for:', user.email);
+
   createSendToken(user, 200, res);
 });
 
-exports.updatePassword = catchAsync(async (req, res, next) => {
-  // 1) Get the user from collection
+// Update Password Controller
+export const updatePassword = catchAsync(async (req, res, next) => {
+  console.log('[updatePassword] Updating password for user:', req.user.id);
+
   const user = await User.findById(req.user.id).select('+password');
 
-  // 2) Check posted password is correct
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
+    console.warn('[updatePassword] Current password incorrect');
     return next(new AppError('Your current password is wrong', 401));
   }
 
-  // 3) If so, update Password.
   user.password = req.body.password;
   user.passwordConfirm = req.body.passwordConfirm;
   await user.save();
 
-  // 4) Log user in, send JWT
+  console.log('[updatePassword] Password updated successfully');
+
   createSendToken(user, 200, res);
 });
 
-// Only for rendered pages!
-exports.isLoggedIn = catchAsync(async (req, res, next) => {
-  if (!req.cookies.jwt) return next(); // No cookie, just move on
+// Middleware to check if user is logged in (for rendered views)
+export const isLoggedIn = async (req, res, next) => {
+  if (!req.cookies.jwt) {
+    console.log('[isLoggedIn] No JWT cookie found');
+    return next();
+  }
 
   try {
-    // 1) Verify token
     const decoded = await promisify(jwt.verify)(
       req.cookies.jwt,
       process.env.JWT_SECRET,
     );
+    console.log('[isLoggedIn] JWT decoded:', decoded);
 
-    // 2) Check if user still exists
     const currentUser = await User.findById(decoded.id);
-    if (!currentUser) return next();
+    if (!currentUser) {
+      console.warn('[isLoggedIn] No user found from decoded token');
+      return next();
+    }
 
-    // 3) Check if user changed password after token issued
-    if (currentUser.changedPasswordAfter(decoded.iat)) return next();
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
+      console.warn('[isLoggedIn] Password changed after token issued');
+      return next();
+    }
 
-    // ✅ Add user to template locals
     res.locals.user = currentUser;
+    console.log('[isLoggedIn] User is logged in:', currentUser.email);
   } catch (err) {
-    // On error (invalid token, etc), just continue without user
+    console.error('[isLoggedIn] JWT error:', err.message);
     return next();
   }
 
   next();
-});
+};
