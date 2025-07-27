@@ -78,6 +78,7 @@ npm run start:dev
 or
 npm start
 ```
+---
 
 # 💳 Stripe Payment Setup (Mock)
 
@@ -96,12 +97,16 @@ ZIP: Any 5-digit number
 ```
 POST /api/v1/bookings/checkout-session/:tourId
 ```
+---
 
 # 📬 Postman API Testing
 ## 🔗 Base URL
 ```
 http://localhost:8000/api/v1/
 ```
+
+---
+
 # 📂 Available Routes
 
 | Resource | Method   | Endpoint                                          |
@@ -111,6 +116,7 @@ http://localhost:8000/api/v1/
 | Reviews  | GET/POST | `/reviews`                                        |
 | Bookings | GET/POST | `/bookings`, `/bookings/checkout-session/:tourId` | 
 
+---
 
 # 🛠 API Testing Steps
 ### 1. Use POST /api/v1/users/signup or login to generate a JWT token.
