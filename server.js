@@ -12,7 +12,7 @@ process.on('uncaughtException', (err) => {
 });
 
 dotenv.config({ path: './config.env' });
-console.log('[Stripe Init] Key:', process.env.STRIPE_SECRET_KEY);
+
 
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
