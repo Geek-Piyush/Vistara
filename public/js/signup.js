@@ -25,6 +25,7 @@ export const signup = async (name, email, password, passwordConfirm) => {
       }, 1500);
     }
   } catch (err) {
+    const message = err.response?.data?.message || 'Signup failed. Try again.';
     showAlert('error', err.response.data.message);
   }
 };
