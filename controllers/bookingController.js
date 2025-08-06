@@ -4,7 +4,7 @@
 import dotenv from 'dotenv';
 dotenv.config({ path: './config.env' });
 
-console.log('[Stripe Init] STRIPE_SECRET_KEY:', process.env.STRIPE_SECRET_KEY);
+
 import stripePackage from 'stripe';
 
 import Booking from '../models/bookingModel.js';
