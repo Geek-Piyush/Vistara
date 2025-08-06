@@ -68,7 +68,6 @@ export const signup = catchAsync(async (req, res, next) => {
   await new Email(newUser, url).sendWelcome();
 
   createSendToken(newUser, 201, res);
-  console.log('[Signup] Cookie sent:', res.getHeader('Set-Cookie'));
 });
 
 // Login Controller
@@ -249,8 +248,6 @@ export const updatePassword = catchAsync(async (req, res, next) => {
 
 // Middleware to check if user is logged in (for rendered views)
 export const isLoggedIn = async (req, res, next) => {
-  console.log('[isLoggedIn] Raw cookie received:', req.cookies.jwt);
-
   if (!req.cookies.jwt) {
     return next();
   }
