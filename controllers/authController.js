@@ -14,22 +14,24 @@ const signToken = (id) =>
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 // Cookie options for sending JWT in a cookie
-const cookieOptions = {
-  expires: new Date(
-    Date.now() + process.env.JWT_COOKIES_EXPIRES_IN * 24 * 60 * 60 * 1000,
-  ),
-
-  httpOnly: true,
-  sameSite: 'Lax',
-  secure: false,
-};
 
 // Use secure cookies in production
-if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+// if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
 // Function to create and send token
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
+
+  const cookieOptions = {
+    expires: new Date(
+      Date.now() +
+        Number(process.env.JWT_COOKIES_EXPIRES_IN) * 24 * 60 * 60 * 1000,
+    ),
+
+    httpOnly: true,
+    sameSite: 'Lax',
+    secure: false,
+  };
 
   res.cookie('jwt', token, cookieOptions);
 
@@ -66,6 +68,7 @@ export const signup = catchAsync(async (req, res, next) => {
   await new Email(newUser, url).sendWelcome();
 
   createSendToken(newUser, 201, res);
+  console.log('[Signup] Cookie sent:', res.getHeader('Set-Cookie'));
 });
 
 // Login Controller
@@ -92,15 +95,12 @@ export const login = catchAsync(async (req, res, next) => {
     return next(new AppError('Incorrect email or password', 401));
   }
 
-  console.log('[login] User authenticated successfully:', user.email);
-
   // 3) Send token
   createSendToken(user, 200, res);
 });
 
 // Logout Controller
 export const logout = catchAsync(async (req, res, next) => {
-  console.log('[logout] Logging out user');
   res.cookie('jwt', 'loggedout', {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
@@ -115,17 +115,13 @@ export const logout = catchAsync(async (req, res, next) => {
 export const protect = catchAsync(async (req, res, next) => {
   let token;
 
-  console.log('[protect] Checking for token in header or cookie');
-
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
-    console.log('[protect] Token found in header');
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
-    console.log('[protect] Token found in cookies');
   }
 
   if (!token) {
@@ -134,7 +130,6 @@ export const protect = catchAsync(async (req, res, next) => {
   }
 
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  console.log('[protect] Decoded JWT payload:', decoded);
 
   const currentUser = await User.findById(decoded.id);
   if (!currentUser) {
@@ -160,7 +155,6 @@ export const protect = catchAsync(async (req, res, next) => {
 export const restrictTo =
   (...roles) =>
   (req, res, next) => {
-    console.log('[restrictTo] Allowed roles:', roles);
     if (!roles.includes(req.user.role)) {
       console.warn('[restrictTo] Access denied for role:', req.user.role);
       return next(
@@ -172,11 +166,6 @@ export const restrictTo =
 
 // Forgot Password Controller
 export const forgotPassword = catchAsync(async (req, res, next) => {
-  console.log(
-    '[forgotPassword] Password reset requested for email:',
-    req.body.email,
-  );
-
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
@@ -193,7 +182,6 @@ export const forgotPassword = catchAsync(async (req, res, next) => {
     const resetURL = `${req.protocol}://${req.get(
       'host',
     )}/api/v1/users/resetPassword/${resetToken}`;
-    console.log('[forgotPassword] Sending reset URL:', resetURL);
 
     await new Email(user, resetURL).sendPasswordReset();
 
@@ -219,8 +207,6 @@ export const forgotPassword = catchAsync(async (req, res, next) => {
 
 // Reset Password Controller
 export const resetPassword = catchAsync(async (req, res, next) => {
-  console.log('[resetPassword] Token received:', req.params.token);
-
   const hashedToken = crypto
     .createHash('sha256')
     .update(req.params.token)
@@ -242,15 +228,11 @@ export const resetPassword = catchAsync(async (req, res, next) => {
   user.passwordResetExpires = undefined;
   await user.save();
 
-  console.log('[resetPassword] Password reset successful for:', user.email);
-
   createSendToken(user, 200, res);
 });
 
 // Update Password Controller
 export const updatePassword = catchAsync(async (req, res, next) => {
-  console.log('[updatePassword] Updating password for user:', req.user.id);
-
   const user = await User.findById(req.user.id).select('+password');
 
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
@@ -262,15 +244,14 @@ export const updatePassword = catchAsync(async (req, res, next) => {
   user.passwordConfirm = req.body.passwordConfirm;
   await user.save();
 
-  console.log('[updatePassword] Password updated successfully');
-
   createSendToken(user, 200, res);
 });
 
 // Middleware to check if user is logged in (for rendered views)
 export const isLoggedIn = async (req, res, next) => {
+  console.log('[isLoggedIn] Raw cookie received:', req.cookies.jwt);
+
   if (!req.cookies.jwt) {
-    console.log('[isLoggedIn] No JWT cookie found');
     return next();
   }
 
@@ -279,7 +260,6 @@ export const isLoggedIn = async (req, res, next) => {
       req.cookies.jwt,
       process.env.JWT_SECRET,
     );
-    console.log('[isLoggedIn] JWT decoded:', decoded);
 
     const currentUser = await User.findById(decoded.id);
     if (!currentUser) {
@@ -293,7 +273,6 @@ export const isLoggedIn = async (req, res, next) => {
     }
 
     res.locals.user = currentUser;
-    console.log('[isLoggedIn] User is logged in:', currentUser.email);
   } catch (err) {
     console.error('[isLoggedIn] JWT error:', err.message);
     return next();

@@ -53,7 +53,7 @@ export default class Email {
       to: this.to,
       subject,
       html,
-      text: htmlToText.convert(html),
+      text: htmlToText(html),
     };
 
     // 3) Create a transport and send email
