@@ -9,13 +9,10 @@ import AppError from '../utils/appError.js';
 import Email from '../utils/email.js';
 
 // Function to generate a signed JWT token
-const signToken = (id) => {
-  console.log('[signToken] Creating JWT for user ID:', id);
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
+const signToken = (id) =>
+  jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
-};
-
 // Cookie options for sending JWT in a cookie
 const cookieOptions = {
   expires: new Date(
@@ -33,13 +30,8 @@ if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 // Function to create and send token
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
-  console.log('[createSendToken] JWT token generated:', token);
+
   res.cookie('jwt', token, cookieOptions);
-  console.log('[createSendToken] Cookie set with options:', cookieOptions);
-  console.log(
-    '[createSendToken] Cookie expiration date:',
-    cookieOptions.expires,
-  );
 
   // Only removing password from the output object, not the DB
   user.password = undefined;
@@ -54,8 +46,6 @@ const createSendToken = (user, statusCode, res) => {
 
 // Signup Controller
 export const signup = catchAsync(async (req, res, next) => {
-  console.log('[signup] Incoming signup request body:', req.body);
-
   // Safer way of accepting input fields explicitly
   const newUser = await User.create({
     name: req.body.name,
@@ -73,7 +63,6 @@ export const signup = catchAsync(async (req, res, next) => {
     url = `${req.protocol}://${req.get('host')}/me`;
   }
 
-  console.log('[signup] Welcome email URL:', url);
   await new Email(newUser, url).sendWelcome();
 
   createSendToken(newUser, 201, res);
@@ -82,7 +71,6 @@ export const signup = catchAsync(async (req, res, next) => {
 // Login Controller
 export const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-  console.log('[login] Login request with email:', email);
 
   // 1) Validate input
   if (!email || !password) {

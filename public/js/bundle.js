@@ -21560,7 +21560,6 @@ var logout = exports.logout = /*#__PURE__*/function () {
       while (1) switch (_context2.n) {
         case 0:
           _context2.p = 0;
-          console.log('1');
           _context2.n = 1;
           return (0, _axios.default)({
             method: 'GET',
@@ -22080,7 +22079,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61067" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61862" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

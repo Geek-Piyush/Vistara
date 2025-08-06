@@ -4,7 +4,6 @@
 import dotenv from 'dotenv';
 dotenv.config({ path: './config.env' });
 
-
 import stripePackage from 'stripe';
 
 import Booking from '../models/bookingModel.js';

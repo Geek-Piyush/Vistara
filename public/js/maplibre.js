@@ -5,7 +5,7 @@
 //   section.section-map
 //     #map(data-locations=`${JSON.stringify(tour.locations)}`)
 const locations = JSON.parse(document.getElementById('map').dataset.locations);
-console.log(locations);
+
 // Map initialization
 const map = new maplibregl.Map({
   container: 'map', // The ID of the div to render the map in
