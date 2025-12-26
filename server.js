@@ -13,6 +13,12 @@ process.on('uncaughtException', (err) => {
 
 dotenv.config({ path: './config.env' });
 
+// Check if DATABASE is set
+if (!process.env.DATABASE) {
+  console.error('❌ DATABASE environment variable is not set!');
+  process.exit(1);
+}
+
 // Handle both connection string formats
 let DB;
 if (
@@ -27,7 +33,11 @@ if (
   DB = process.env.DATABASE;
 }
 
+// Trim any whitespace
+DB = DB.trim();
+
 console.log('🔌 Connecting to MongoDB...');
+console.log('📝 Database URL starts with:', DB.substring(0, 30) + '...');
 
 mongoose
   .connect(DB, {
