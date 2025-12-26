@@ -34,6 +34,7 @@ import userRouter from './routes/userRoutes.js';
 import reviewRouter from './routes/reviewRoutes.js';
 import bookingRouter from './routes/bookingRoutes.js';
 import viewRouter from './routes/viewRoutes.js';
+import applicationRouter from './routes/applicationRoutes.js';
 
 const app = express();
 
@@ -174,6 +175,19 @@ app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/booking', bookingRouter);
+app.use('/api/v1/applications', applicationRouter);
+
+// Suppress 404 errors for source maps and browser dev tools
+app.use((req, res, next) => {
+  if (
+    req.url.endsWith('.map') ||
+    req.url.includes('.well-known') ||
+    req.url.includes('favicon.ico')
+  ) {
+    return res.status(204).end();
+  }
+  next();
+});
 
 // Handle unhandled routes
 app.all('*', (req, res, next) => {

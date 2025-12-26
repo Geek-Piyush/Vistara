@@ -1,15 +1,33 @@
 
 header.header 
-  nav.nav.nav--tours 
-    a.nav__el(href='/') All tours
-  .header__logo
-    img(src='/img/logo-white.png' alt='Vistara logo')
+  .header__left
+    .header__logo
+      a(href='/')
+        img(src='/img/logo-white.png' alt='Vistara logo')
+    a.header__brand(href='/') VISTARA
+  
+  nav.nav.nav--main
+    a.nav__el(href='/') All Tours
+    a.nav__el(href='/about') About
+    a.nav__el(href='/contact') Contact
+    
   nav.nav.nav--user
     if user
-      a.nav__el.nav__el--logout(href='#') Log Out
-      a.nav__el(href='/me') 
-        img.nav__user-img(src=`/img/users/${user.photo}` alt=`Photo of ${user.name} `)
-        span=user.name.split(' ')[0]
+      .user-menu
+        button.user-menu__toggle
+          img.nav__user-img(src=`/img/users/${user.photo}` alt=`Photo of ${user.name}`)
+          span.user-name=user.name.split(' ')[0]
+          svg.user-menu__arrow
+            use(xlink:href='/img/icons.svg#icon-chevron-down')
+        .user-menu__dropdown
+          a.user-menu__item(href='/me')
+            svg.user-menu__icon
+              use(xlink:href='/img/icons.svg#icon-user')
+            span My Profile
+          a.user-menu__item.nav__el--logout(href='#')
+            svg.user-menu__icon
+              use(xlink:href='/img/icons.svg#icon-log-out')
+            span Log Out
     else
-      a.nav__el(href= '/login') Log in
+      a.nav__el(href='/login') Log in
       a.nav__el.nav__el--cta(href='/signup') Sign Up

@@ -1,0 +1,58 @@
+extends base
+
+block content
+  main.main
+    .admin-container
+      h1.heading-primary.ma-bt-lg Manage Guide Applications
+      
+      if applications.length === 0
+        p.no-data No guide applications yet.
+      else
+        .applications-table
+          table.admin-table
+            thead
+              tr
+                th Name
+                th Email
+                th Phone
+                th Experience
+                th Specialization
+                th Status
+                th Applied
+                th Actions
+            tbody
+              each application in applications
+                tr(class=`status-${application.status}`)
+                  td= application.name
+                  td= application.email
+                  td= application.phone
+                  td= `${application.experience} years`
+                  td= application.specialization
+                  td
+                    select.status-select(data-id=application._id, data-type='guide')
+                      option(value='pending', selected=application.status === 'pending') Pending
+                      option(value='reviewed', selected=application.status === 'reviewed') Reviewed
+                      option(value='accepted', selected=application.status === 'accepted') Accepted
+                      option(value='rejected', selected=application.status === 'rejected') Rejected
+                  td= application.appliedAt.toLocaleDateString()
+                  td.actions
+                    a.btn.btn--small.btn--blue(href=`mailto:${application.email}?subject=Regarding Your Guide Application&body=Dear ${application.name},`, target='_blank', title='Send Email')
+                      svg.icon-small
+                        use(xlink:href='/img/icons.svg#icon-mail')
+                    a.btn.btn--small.btn--green(href=`/resumes/${application.resume}`, target='_blank', download, title='Download Resume')
+                      svg.icon-small
+                        use(xlink:href='/img/icons.svg#icon-download')
+                    button.btn.btn--small.btn--grey.view-details-btn(data-id=application._id, data-type='guide', title='View Details')
+                      svg.icon-small
+                        use(xlink:href='/img/icons.svg#icon-eye')
+                    button.btn.btn--small.btn--red.delete-application-btn(data-id=application._id, data-type='guide', title='Delete')
+                      svg.icon-small
+                        use(xlink:href='/img/icons.svg#icon-trash-2')
+      
+      .details-modal#details-modal
+        .modal-content
+          .modal-header
+            h2.heading-secondary Application Details
+            button.modal-close &times;
+          .modal-body
+            #modal-details-content

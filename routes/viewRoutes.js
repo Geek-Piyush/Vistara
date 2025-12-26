@@ -79,10 +79,18 @@ router.get(
   restrictTo('admin'),
   viewController.getManageBookings,
 );
+router.get(
+  '/manage-guide-applications',
+  protect,
+  restrictTo('admin'),
+  viewController.getManageGuideApplications,
+);
 
 // Public pages
-router.get('/about', viewController.getAbout);
-router.get('/privacy', viewController.getPrivacy);
-router.get('/contact', viewController.getContact);
+router.get('/about', isLoggedIn, viewController.getAbout);
+router.get('/privacy', isLoggedIn, viewController.getPrivacy);
+router.get('/contact', isLoggedIn, viewController.getContact);
+router.get('/become-guide', isLoggedIn, viewController.getBecomeGuide);
+router.get('/careers', isLoggedIn, viewController.getCareers);
 
 export default router;

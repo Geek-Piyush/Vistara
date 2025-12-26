@@ -1,0 +1,130 @@
+extends base
+
+block content
+  main.main
+    if user && user.role === 'admin'
+      .admin-restriction
+        .container
+          h1.heading-primary.ma-bt-lg Access Restricted
+          p.restriction-message Administrators cannot apply for guide positions. Please use a regular user account to submit applications.
+          a.btn.btn--green(href='/') Back to Home
+    else
+      .career-hero
+        .career-hero__overlay
+        h1.heading-primary
+          span Join Our Team of Expert Guides
+    
+    section.section-become-guide
+      .container
+        .become-guide-intro
+          h2.heading-secondary.ma-bt-lg Why Become a Vistara Guide?
+          
+          .benefits-grid
+            .benefit-card
+              svg.benefit-icon
+                use(xlink:href='/img/icons.svg#icon-trending-up')
+              h3.heading-tertiary Competitive Pay
+              p Earn excellent compensation with performance bonuses and tips from satisfied travelers.
+            
+            .benefit-card
+              svg.benefit-icon
+                use(xlink:href='/img/icons.svg#icon-globe')
+              h3.heading-tertiary Travel the World
+              p Lead tours to amazing destinations and experience cultures from around the globe.
+            
+            .benefit-card
+              svg.benefit-icon
+                use(xlink:href='/img/icons.svg#icon-users')
+              h3.heading-tertiary Meet People
+              p Connect with travelers from all walks of life and create lasting friendships.
+            
+            .benefit-card
+              svg.benefit-icon
+                use(xlink:href='/img/icons.svg#icon-award')
+              h3.heading-tertiary Professional Growth
+              p Access continuous training and development opportunities to enhance your skills.
+        
+        .requirements-section.ma-top-lg
+          h2.heading-secondary.ma-bt-md Requirements
+          
+          ul.requirements-list
+            li
+              svg.check-icon
+                use(xlink:href='/img/icons.svg#icon-check')
+              | Minimum 2 years of guiding or hospitality experience
+            li
+              svg.check-icon
+                use(xlink:href='/img/icons.svg#icon-check')
+              | Fluent in English and at least one other language
+            li
+              svg.check-icon
+                use(xlink:href='/img/icons.svg#icon-check')
+              | First Aid and CPR certification (or willingness to obtain)
+            li
+              svg.check-icon
+                use(xlink:href='/img/icons.svg#icon-check')
+              | Excellent communication and interpersonal skills
+            li
+              svg.check-icon
+                use(xlink:href='/img/icons.svg#icon-check')
+              | Strong knowledge of local culture, history, and geography
+            li
+              svg.check-icon
+                use(xlink:href='/img/icons.svg#icon-check')
+              | Passion for travel and cultural exchange
+        
+        .application-section.ma-top-lg
+          h2.heading-secondary.ma-bt-lg Apply Now
+          
+          .guide-application-form-container
+            form.form.form--guide-application(enctype='multipart/form-data')
+              h3.heading-tertiary.ma-bt-md Personal Information
+              
+              .form__row
+                .form__group
+                  label.form__label(for='guide-name') Full Name *
+                  input#guide-name.form__input(type='text', placeholder='John Doe', required)
+                .form__group
+                  label.form__label(for='guide-email') Email Address *
+                  input#guide-email.form__input(type='email', placeholder='you@example.com', required)
+              
+              .form__row
+                .form__group
+                  label.form__label(for='guide-phone') Phone Number *
+                  input#guide-phone.form__input(type='tel', placeholder='+1 (555) 123-4567', required)
+                .form__group
+                  label.form__label(for='guide-experience') Years of Experience *
+                  input#guide-experience.form__input(type='number', min='0', placeholder='5', required)
+              
+              h3.heading-tertiary.ma-bt-md Professional Details
+              
+              .form__group
+                label.form__label(for='guide-languages') Languages Spoken *
+                input#guide-languages.form__input(type='text', placeholder='English, Spanish, French', required)
+              
+              .form__group
+                label.form__label(for='guide-specialization') Area of Specialization *
+                select#guide-specialization.form__input(required)
+                  option(value='' disabled selected) Select specialization
+                  option(value='adventure') Adventure Tours
+                  option(value='cultural') Cultural & Heritage
+                  option(value='wildlife') Wildlife & Nature
+                  option(value='city') City Tours
+                  option(value='trekking') Trekking & Hiking
+                  option(value='food') Food & Culinary
+                  option(value='photography') Photography Tours
+                  option(value='luxury') Luxury Travel
+              
+              .form__group
+                label.form__label(for='guide-cover-letter') Cover Letter *
+                textarea#guide-cover-letter.form__input.form__textarea(rows='6', placeholder='Tell us why you want to join Vistara and what makes you a great guide...', required)
+              
+              .form__group
+                label.form__label(for='guide-resume') Resume/CV (PDF, DOC, DOCX) *
+                input#guide-resume.form__input(type='file', name='resume', accept='.pdf,.doc,.docx', required)
+                p.form__help Maximum file size: 5MB
+              
+              .form__group.ma-bt-md
+                button.btn.btn--green(type='submit') Submit Application
+                a.btn.btn--grey(href='/') Cancel
+

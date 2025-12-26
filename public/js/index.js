@@ -20,6 +20,13 @@ import {
 } from './admin.js';
 import { deleteMyAccount } from './deleteAccount.js';
 import { submitContactForm } from './contact.js';
+import {
+  submitGuideApplication,
+  submitJobApplication,
+  updateApplicationStatus,
+  deleteApplication,
+  getApplicationDetails,
+} from './application.js';
 import { showAlert } from './alert.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -37,6 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const editUserForm = document.querySelector('.form--edit-user');
   const searchForm = document.querySelector('.form--search');
   const contactForm = document.querySelector('.contact-form');
+  const guideApplicationForm = document.querySelector(
+    '.form--guide-application',
+  );
+  const jobApplicationForm = document.querySelector('.form--job-application');
+  const applyButtons = document.querySelectorAll('.apply-btn');
+  const applicationModal = document.getElementById('application-modal');
 
   // LOGIN
   if (loginForm) {
@@ -506,6 +519,243 @@ document.addEventListener('DOMContentLoaded', () => {
       if (name && email && subject && message) {
         submitContactForm(name, email, phone, subject, message);
       }
+    });
+  }
+
+  // GUIDE APPLICATION FORM
+  if (guideApplicationForm) {
+    guideApplicationForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData();
+      formData.append('name', document.getElementById('guide-name').value);
+      formData.append('email', document.getElementById('guide-email').value);
+      formData.append('phone', document.getElementById('guide-phone').value);
+      formData.append(
+        'experience',
+        document.getElementById('guide-experience').value,
+      );
+      formData.append(
+        'languages',
+        document.getElementById('guide-languages').value,
+      );
+      formData.append(
+        'specialization',
+        document.getElementById('guide-specialization').value,
+      );
+      formData.append(
+        'coverLetter',
+        document.getElementById('guide-cover-letter').value,
+      );
+
+      const resumeFile = document.getElementById('guide-resume').files[0];
+      if (resumeFile) {
+        formData.append('resume', resumeFile);
+      }
+
+      await submitGuideApplication(formData);
+    });
+  }
+
+  // JOB APPLICATION MODAL
+  if (applyButtons && applicationModal) {
+    const modalClose = applicationModal.querySelector('.modal-close');
+    const modalCancel = applicationModal.querySelector('.modal-cancel');
+    const positionTitle = document.getElementById('modal-position-title');
+
+    applyButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const position = btn.dataset.position;
+        const positionName = position
+          .replace(/-/g, ' ')
+          .replace(/\b\w/g, (l) => l.toUpperCase());
+
+        positionTitle.textContent = positionName;
+        document.getElementById('job-position').value = position;
+        applicationModal.style.display = 'flex';
+      });
+    });
+
+    const closeModal = () => {
+      applicationModal.style.display = 'none';
+      jobApplicationForm.reset();
+    };
+
+    modalClose?.addEventListener('click', closeModal);
+    modalCancel?.addEventListener('click', closeModal);
+
+    window.addEventListener('click', (e) => {
+      if (e.target === applicationModal) {
+        closeModal();
+      }
+    });
+  }
+
+  // JOB APPLICATION FORM
+  if (jobApplicationForm) {
+    jobApplicationForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData();
+      formData.append(
+        'position',
+        document.getElementById('job-position').value,
+      );
+      formData.append('name', document.getElementById('job-name').value);
+      formData.append('email', document.getElementById('job-email').value);
+      formData.append('phone', document.getElementById('job-phone').value);
+      formData.append(
+        'experience',
+        document.getElementById('job-experience').value,
+      );
+      formData.append(
+        'education',
+        document.getElementById('job-education').value,
+      );
+      formData.append(
+        'coverLetter',
+        document.getElementById('job-cover-letter').value,
+      );
+
+      const portfolio = document.getElementById('job-portfolio').value;
+      if (portfolio) {
+        formData.append('portfolio', portfolio);
+      }
+
+      const resumeFile = document.getElementById('job-resume').files[0];
+      if (resumeFile) {
+        formData.append('resume', resumeFile);
+      }
+
+      await submitJobApplication(formData);
+    });
+  }
+
+  // ADMIN: Update Application Status
+  const statusSelects = document.querySelectorAll('.status-select');
+  if (statusSelects) {
+    statusSelects.forEach((select) => {
+      select.addEventListener('change', async (e) => {
+        const applicationId = e.target.dataset.id;
+        const type = e.target.dataset.type;
+        const newStatus = e.target.value;
+
+        await updateApplicationStatus(applicationId, type, newStatus);
+      });
+    });
+  }
+
+  // ADMIN: Delete Application
+  const deleteAppBtns = document.querySelectorAll('.delete-application-btn');
+  if (deleteAppBtns) {
+    deleteAppBtns.forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        const applicationId = e.target.closest('button').dataset.id;
+        const type = e.target.closest('button').dataset.type;
+
+        if (confirm('Are you sure you want to delete this application?')) {
+          const success = await deleteApplication(applicationId, type);
+          if (success) {
+            location.reload();
+          }
+        }
+      });
+    });
+  }
+
+  // ADMIN: View Application Details
+  const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
+  const detailsModal = document.getElementById('details-modal');
+
+  if (viewDetailsBtns && detailsModal) {
+    const modalClose = detailsModal.querySelector('.modal-close');
+    const modalContent = document.getElementById('modal-details-content');
+
+    viewDetailsBtns.forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        const applicationId = e.target.closest('button').dataset.id;
+        const type = e.target.closest('button').dataset.type;
+
+        const application = await getApplicationDetails(applicationId, type);
+
+        if (application) {
+          let detailsHTML = '';
+
+          if (type === 'guide') {
+            detailsHTML = `
+              <div class="application-details">
+                <p><strong>Name:</strong> ${application.name}</p>
+                <p><strong>Email:</strong> ${application.email}</p>
+                <p><strong>Phone:</strong> ${application.phone}</p>
+                <p><strong>Experience:</strong> ${application.experience} years</p>
+                <p><strong>Languages:</strong> ${application.languages}</p>
+                <p><strong>Specialization:</strong> ${application.specialization}</p>
+                <p><strong>Cover Letter:</strong></p>
+                <p class="cover-letter">${application.coverLetter}</p>
+                <p><strong>Status:</strong> ${application.status}</p>
+                <p><strong>Applied:</strong> ${new Date(application.appliedAt).toLocaleString()}</p>
+              </div>
+            `;
+          } else {
+            detailsHTML = `
+              <div class="application-details">
+                <p><strong>Name:</strong> ${application.name}</p>
+                <p><strong>Position:</strong> ${application.position.replace(/-/g, ' ')}</p>
+                <p><strong>Email:</strong> ${application.email}</p>
+                <p><strong>Phone:</strong> ${application.phone}</p>
+                <p><strong>Experience:</strong> ${application.experience} years</p>
+                <p><strong>Education:</strong> ${application.education}</p>
+                ${application.portfolio ? `<p><strong>Portfolio:</strong> <a href="${application.portfolio}" target="_blank">${application.portfolio}</a></p>` : ''}
+                <p><strong>Cover Letter:</strong></p>
+                <p class="cover-letter">${application.coverLetter}</p>
+                <p><strong>Status:</strong> ${application.status}</p>
+                <p><strong>Applied:</strong> ${new Date(application.appliedAt).toLocaleString()}</p>
+              </div>
+            `;
+          }
+
+          modalContent.innerHTML = detailsHTML;
+          detailsModal.style.display = 'flex';
+        }
+      });
+    });
+
+    const closeDetailsModal = () => {
+      detailsModal.style.display = 'none';
+    };
+
+    modalClose?.addEventListener('click', closeDetailsModal);
+
+    window.addEventListener('click', (e) => {
+      if (e.target === detailsModal) {
+        closeDetailsModal();
+      }
+    });
+  }
+
+  // USER MENU DROPDOWN
+  const userMenu = document.querySelector('.user-menu');
+  const userMenuToggle = document.querySelector('.user-menu__toggle');
+
+  if (userMenuToggle) {
+    userMenuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      userMenu.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!userMenu.contains(e.target)) {
+        userMenu.classList.remove('active');
+      }
+    });
+
+    // Close dropdown when clicking menu items
+    const menuItems = document.querySelectorAll('.user-menu__item');
+    menuItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        userMenu.classList.remove('active');
+      });
     });
   }
 

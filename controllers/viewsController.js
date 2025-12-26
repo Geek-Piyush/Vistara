@@ -2,6 +2,8 @@ import Booking from '../models/bookingModel.js';
 import Tour from '../models/tourModel.js';
 import User from '../models/userModel.js';
 import Review from '../models/reviewModel.js';
+import GuideApplication from '../models/guideApplicationModel.js';
+import JobApplication from '../models/jobApplicationModel.js';
 import catchAsync from '../utils/catchAsync.js';
 import AppError from '../utils/appError.js';
 
@@ -250,3 +252,35 @@ export const getContact = (req, res) => {
     title: 'Contact Us',
   });
 };
+
+export const getBecomeGuide = (req, res) => {
+  res.status(200).render('become-guide', {
+    title: 'Become a Guide',
+  });
+};
+
+export const getCareers = (req, res) => {
+  res.status(200).render('careers', {
+    title: 'Careers',
+  });
+};
+
+// Admin: Manage Guide Applications
+export const getManageGuideApplications = catchAsync(async (req, res, next) => {
+  const applications = await GuideApplication.find().sort('-appliedAt');
+
+  res.status(200).render('manageGuideApplications', {
+    title: 'Manage Guide Applications',
+    applications,
+  });
+});
+
+// Admin: Manage Job Applications
+export const getManageJobApplications = catchAsync(async (req, res, next) => {
+  const applications = await JobApplication.find().sort('-appliedAt');
+
+  res.status(200).render('manageJobApplications', {
+    title: 'Manage Job Applications',
+    applications,
+  });
+});
