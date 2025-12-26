@@ -45,8 +45,11 @@ console.log('📝 Contains /natours:', DB.includes('/natours'));
 
 mongoose
   .connect(DB, {
-    serverSelectionTimeoutMS: 30000, // 30 seconds timeout
-    socketTimeoutMS: 45000, // 45 seconds socket timeout
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000,
+    socketTimeoutMS: 45000,
+  })
   })
   .then(() => console.log('✅ DB Connection Successful'))
   .catch((err) => {
