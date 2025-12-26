@@ -13,49 +13,19 @@ process.on('uncaughtException', (err) => {
 
 dotenv.config({ path: './config.env' });
 
-// Check if DATABASE is set
-if (!process.env.DATABASE) {
-  console.error('❌ DATABASE environment variable is not set!');
-  process.exit(1);
-}
-
-// Handle both connection string formats
-let DB;
-if (
-  process.env.DATABASE.includes('<PASSWORD>') &&
-  process.env.DATABASE_PASSWORD
-) {
-  DB = process.env.DATABASE.replace(
-    '<PASSWORD>',
-    process.env.DATABASE_PASSWORD,
-  );
-} else {
-  DB = process.env.DATABASE;
-}
-
-// Trim any whitespace
-DB = DB.trim();
-
-console.log('🔌 Connecting to MongoDB...');
-console.log('📝 Connection string length:', DB.length);
-console.log('📝 Full URL (masked password):', DB.replace(/:[^@]+@/, ':****@'));
-console.log('📝 Contains @cluster0:', DB.includes('@cluster0'));
-console.log('📝 Contains /natours:', DB.includes('/natours'));
+const DB = process.env.DATABASE.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD,
+);
 
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 30000,
-    socketTimeoutMS: 45000,
+    useCreateIndex: true,
+    useFindAndModify: false,
   })
-  .then(() => console.log('✅ DB Connection Successful'))
-  .catch((err) => {
-    console.error('❌ DB Connection Error:', err.message);
-    console.error('💡 Check: 1) MongoDB Atlas Network Access allows 0.0.0.0/0');
-    console.error('💡 Check: 2) DATABASE env variable is correct');
-    console.error('💡 Check: 3) MongoDB cluster is running');
-  });
+  .then(() => console.log('DB Connection Successful'));
 
 // Start Server
 const port = process.env.PORT || 8000;
