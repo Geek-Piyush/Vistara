@@ -40,9 +40,17 @@ console.log('🔌 Connecting to MongoDB...');
 console.log('📝 Database URL starts with:', DB.substring(0, 30) + '...');
 
 mongoose
-  .connect(DB)
+  .connect(DB, {
+    serverSelectionTimeoutMS: 30000, // 30 seconds timeout
+    socketTimeoutMS: 45000, // 45 seconds socket timeout
+  })
   .then(() => console.log('✅ DB Connection Successful'))
-  .catch((err) => console.error('❌ DB Connection Error:', err.message));
+  .catch((err) => {
+    console.error('❌ DB Connection Error:', err.message);
+    console.error('💡 Check: 1) MongoDB Atlas Network Access allows 0.0.0.0/0');
+    console.error('💡 Check: 2) DATABASE env variable is correct');
+    console.error('💡 Check: 3) MongoDB cluster is running');
+  });
 
 // Start Server
 const port = process.env.PORT || 8000;
