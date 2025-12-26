@@ -50,7 +50,6 @@ mongoose
     serverSelectionTimeoutMS: 30000,
     socketTimeoutMS: 45000,
   })
-  })
   .then(() => console.log('✅ DB Connection Successful'))
   .catch((err) => {
     console.error('❌ DB Connection Error:', err.message);
