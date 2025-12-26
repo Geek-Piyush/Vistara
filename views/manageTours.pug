@@ -1,0 +1,38 @@
+extends base
+
+block content
+  main.main
+    .admin-container
+      h2.heading-secondary.ma-bt-lg Manage Tours
+
+      .admin-actions.ma-bt-lg
+        a.btn.btn--green(href='/create-tour') + Create New Tour
+
+      if tours && tours.length > 0
+        .admin-table
+          table.table
+            thead
+              tr
+                th Image
+                th Name
+                th Duration
+                th Difficulty
+                th Price
+                th Rating
+                th Actions
+            tbody
+              each tour in tours
+                tr
+                  td
+                    img.table__img(src=`/img/tours/${tour.imageCover}`, alt=tour.name)
+                  td= tour.name
+                  td= `${tour.duration} days`
+                  td= tour.difficulty
+                  td= `$${tour.price}`
+                  td= `${tour.ratingsAverage} (${tour.ratingsQuantity})`
+                  td.table__actions
+                    a.btn.btn--small.btn--green(href=`/tour/${tour.slug}`) View
+                    a.btn.btn--small.btn--yellow(href=`/edit-tour/${tour.id}`) Edit
+                    button.btn.btn--small.btn--red.btn-delete-tour(data-tour-id=tour.id) Delete
+      else
+        p.no-data No tours found.

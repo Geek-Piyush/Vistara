@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: vistara
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build:js
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRES_IN
+        value: 90d
+      - key: JWT_COOKIES_EXPIRES_IN
+        value: 90
+      - key: EMAIL_USERNAME
+        sync: false
+      - key: EMAIL_PASSWORD
+        sync: false
+      - key: EMAIL_HOST
+        value: sandbox.smtp.mailtrap.io
+      - key: EMAIL_PORT
+        value: 25
+      - key: EMAIL_FROM
+        sync: false
+      - key: SENDGRID_USERNAME
+        sync: false
+      - key: SENDGRID_PASSWORD
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false

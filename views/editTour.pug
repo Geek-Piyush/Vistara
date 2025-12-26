@@ -1,0 +1,77 @@
+extends base
+
+block content
+  main.main
+    .admin-form-container
+      h2.heading-secondary.ma-bt-lg Edit Tour
+      
+      form.form.form--edit-tour(data-tour-id=tour.id)
+        .form__row
+          .form__group
+            label.form__label(for='edit-tour-name') Tour Name *
+            input#edit-tour-name.form__input(type='text', value=tour.name, required)
+          .form__group
+            label.form__label(for='edit-tour-slug') URL Slug *
+            input#edit-tour-slug.form__input(type='text', value=tour.slug, required)
+        
+        .form__row
+          .form__group
+            label.form__label(for='edit-tour-duration') Duration (days) *
+            input#edit-tour-duration.form__input(type='number', min='1', value=tour.duration, required)
+          .form__group
+            label.form__label(for='edit-tour-maxGroupSize') Max Group Size *
+            input#edit-tour-maxGroupSize.form__input(type='number', min='1', value=tour.maxGroupSize, required)
+        
+        .form__row
+          .form__group
+            label.form__label(for='edit-tour-difficulty') Difficulty *
+            select#edit-tour-difficulty.form__input(required)
+              option(value='easy', selected=(tour.difficulty === 'easy')) Easy
+              option(value='medium', selected=(tour.difficulty === 'medium')) Medium
+              option(value='difficult', selected=(tour.difficulty === 'difficult')) Difficult
+          .form__group
+            label.form__label(for='edit-tour-price') Price ($) *
+            input#edit-tour-price.form__input(type='number', min='0', value=tour.price, required)
+        
+        .form__row
+          .form__group
+            label.form__label(for='edit-tour-priceDiscount') Price Discount ($)
+            input#edit-tour-priceDiscount.form__input(type='number', min='0', value=(tour.priceDiscount || 0))
+        
+        .form__group
+          label.form__label(for='edit-tour-summary') Summary *
+          textarea#edit-tour-summary.form__input(rows='2', required)= tour.summary
+        
+        .form__group
+          label.form__label(for='edit-tour-description') Description *
+          textarea#edit-tour-description.form__input(rows='5', required)= tour.description
+        
+        .form__row
+          .form__group
+            label.form__label(for='edit-tour-imageCover') Cover Image URL *
+            input#edit-tour-imageCover.form__input(type='text', value=tour.imageCover, required)
+        
+        .form__group
+          label.form__label Current Rating
+          p.form__text= `${tour.ratingsAverage} / 5 (${tour.ratingsQuantity} reviews)`
+        
+        h3.heading-tertiary.ma-bt-md Start Location
+        .form__row
+          .form__group
+            label.form__label(for='edit-tour-startLocation-description') Location Name *
+            input#edit-tour-startLocation-description.form__input(type='text', value=tour.startLocation.description, required)
+          .form__group
+            label.form__label(for='edit-tour-startLocation-address') Address
+            input#edit-tour-startLocation-address.form__input(type='text', value=(tour.startLocation.address || ''))
+        
+        .form__row
+          .form__group
+            label.form__label(for='edit-tour-startLocation-lat') Latitude *
+            input#edit-tour-startLocation-lat.form__input(type='number', step='any', value=tour.startLocation.coordinates[1], required)
+          .form__group
+            label.form__label(for='edit-tour-startLocation-lng') Longitude *
+            input#edit-tour-startLocation-lng.form__input(type='number', step='any', value=tour.startLocation.coordinates[0], required)
+        
+        .form__group.ma-bt-md
+          button.btn.btn--green(type='submit') Save Changes
+          a.btn.btn--grey(href='/manage-tours') Cancel

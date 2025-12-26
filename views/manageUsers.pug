@@ -1,0 +1,31 @@
+extends base
+
+block content
+  main.main
+    .admin-container
+      h2.heading-secondary.ma-bt-lg Manage Users
+
+      if users && users.length > 0
+        .admin-table
+          table.table
+            thead
+              tr
+                th Photo
+                th Name
+                th Email
+                th Role
+                th Actions
+            tbody
+              each u in users
+                tr
+                  td
+                    img.table__img.table__img--round(src=`/img/users/${u.photo}`, alt=u.name)
+                  td= u.name
+                  td= u.email
+                  td
+                    span.badge(class=`badge--${u.role}`)= u.role
+                  td.table__actions
+                    a.btn.btn--small.btn--yellow(href=`/edit-user/${u.id}`) Edit
+                    button.btn.btn--small.btn--red.btn-delete-user(data-user-id=u.id) Delete
+      else
+        p.no-data No users found.

@@ -13,10 +13,6 @@ const signToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
-// Cookie options for sending JWT in a cookie
-
-// Use secure cookies in production
-// if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
 // Function to create and send token
 const createSendToken = (user, statusCode, res) => {
@@ -27,10 +23,9 @@ const createSendToken = (user, statusCode, res) => {
       Date.now() +
         Number(process.env.JWT_COOKIES_EXPIRES_IN) * 24 * 60 * 60 * 1000,
     ),
-
     httpOnly: true,
-    sameSite: 'Lax',
-    secure: false,
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    secure: process.env.NODE_ENV === 'production',
   };
 
   res.cookie('jwt', token, cookieOptions);
@@ -103,8 +98,8 @@ export const logout = catchAsync(async (req, res, next) => {
   res.cookie('jwt', 'loggedout', {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
-    sameSite: 'Lax',
-    secure: false,
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    secure: process.env.NODE_ENV === 'production',
   });
 
   res.status(200).json({ status: 'success' });

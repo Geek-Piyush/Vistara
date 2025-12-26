@@ -1,0 +1,125 @@
+extends base
+
+block content
+  main.main
+    section.section-contact
+      .container
+        h1.heading-primary.ma-bt-lg Get in Touch
+        
+        p.contact-intro We'd love to hear from you! Whether you have questions about our tours, need help with a booking, or just want to share your travel stories, feel free to reach out.
+        
+        .contact-wrapper
+          .contact-info
+            h2.heading-secondary Contact Information
+            
+            .contact-item
+              svg.contact-icon
+                use(xlink:href='/img/icons.svg#icon-mail')
+              div
+                h3.heading-tertiary Email
+                p info@vistara.com
+                p support@vistara.com
+            
+            .contact-item
+              svg.contact-icon
+                use(xlink:href='/img/icons.svg#icon-phone')
+              div
+                h3.heading-tertiary Phone
+                p +1 (555) 123-4567
+                p Mon-Fri: 9:00 AM - 6:00 PM EST
+            
+            .contact-item
+              svg.contact-icon
+                use(xlink:href='/img/icons.svg#icon-map-pin')
+              div
+                h3.heading-tertiary Office
+                p 123 Adventure Street
+                p Travel City, TC 12345
+                p United States
+            
+            .contact-item
+              svg.contact-icon
+                use(xlink:href='/img/icons.svg#icon-clock')
+              div
+                h3.heading-tertiary Business Hours
+                p Monday - Friday: 9:00 AM - 6:00 PM
+                p Saturday: 10:00 AM - 4:00 PM
+                p Sunday: Closed
+            
+            .social-media
+              h3.heading-tertiary Follow Us
+              .social-links
+                a.social-link(href='#' aria-label='Facebook')
+                  svg.social-icon
+                    use(xlink:href='/img/icons.svg#icon-facebook')
+                a.social-link(href='#' aria-label='Twitter')
+                  svg.social-icon
+                    use(xlink:href='/img/icons.svg#icon-twitter')
+                a.social-link(href='#' aria-label='Instagram')
+                  svg.social-icon
+                    use(xlink:href='/img/icons.svg#icon-instagram')
+                a.social-link(href='#' aria-label='YouTube')
+                  svg.social-icon
+                    use(xlink:href='/img/icons.svg#icon-youtube')
+          
+          .contact-form-section
+            h2.heading-secondary Send Us a Message
+            
+            form.form.contact-form
+              .form__group
+                label.form__label(for='name') Name
+                input#name.form__input(type='text' placeholder='Your full name' required)
+              
+              .form__group
+                label.form__label(for='email') Email Address
+                input#email.form__input(type='email' placeholder='you@example.com' required)
+              
+              .form__group
+                label.form__label(for='phone') Phone Number (Optional)
+                input#phone.form__input(type='tel' placeholder='+1 (555) 123-4567')
+              
+              .form__group
+                label.form__label(for='subject') Subject
+                select#subject.form__input(required)
+                  option(value='' disabled selected) Select a topic
+                  option(value='booking') Booking Inquiry
+                  option(value='existing-booking') Existing Booking
+                  option(value='tour-info') Tour Information
+                  option(value='feedback') Feedback
+                  option(value='complaint') Complaint
+                  option(value='partnership') Partnership Opportunity
+                  option(value='other') Other
+              
+              .form__group
+                label.form__label(for='message') Message
+                textarea#message.form__input.form__textarea(rows='6' placeholder='Tell us how we can help you...' required)
+              
+              .form__group
+                button.btn.btn--green(type='submit') Send Message
+        
+        .faq-section.ma-top-lg
+          h2.heading-secondary.ma-bt-md Frequently Asked Questions
+          
+          .faq-item
+            h3.heading-tertiary How do I book a tour?
+            p You can book a tour directly through our website by selecting your desired tour, choosing a date, and completing the booking process. You'll receive a confirmation email once your booking is complete.
+          
+          .faq-item
+            h3.heading-tertiary What is your cancellation policy?
+            p Cancellation policies vary by tour. Generally, you can cancel up to 30 days before departure for a full refund. Please check the specific tour details or contact us for more information.
+          
+          .faq-item
+            h3.heading-tertiary Do you offer group discounts?
+            p Yes! We offer special rates for groups of 10 or more travelers. Contact us at groups@vistara.com for more information and custom quotes.
+          
+          .faq-item
+            h3.heading-tertiary Are your tours suitable for solo travelers?
+            p Absolutely! Many of our travelers are solo adventurers. Our small group tours are perfect for meeting like-minded people while exploring amazing destinations.
+          
+          .faq-item
+            h3.heading-tertiary What's included in the tour price?
+            p Tour inclusions vary by package. Typically, our tours include accommodation, guided activities, some meals, and transportation as specified in the tour details. Check each tour page for specific inclusions.
+        
+        .back-link.ma-top-lg
+          a.btn.btn--small.btn--green(href='/') Back to Home
+

@@ -7,17 +7,22 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "start": "node server.js",
-    "start:prod": "cross-env NODE_ENV=production nodemon server.js",
+    "start": "NODE_ENV=production node server.js",
+    "start:dev": "nodemon server.js",
+    "start:prod": "cross-env NODE_ENV=production node server.js",
     "debug": "ndb server.js",
     "watch:js": "npx parcel-bundler watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
-    "build:js": "npx parcel-bundler build ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
+    "build:js": "npx parcel-bundler build ./public/js/index.js --out-dir ./public/js --out-file bundle.js --no-source-maps",
+    "build": "npm run build:js",
+    "validate": "node validate-deployment.js",
+    "render-deploy": "npm run validate && npm run build:js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@stripe/stripe-js": "^7.4.0",
     "axios": "^0.18.0",
     "bcryptjs": "^3.0.2",
+    "compression": "^1.8.1",
     "cookie-parser": "^1.4.7",
     "core-js": "^3.43.0",
     "cors": "^2.8.5",
@@ -58,6 +63,7 @@
     "prettier": "^3.5.3"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }

@@ -40,32 +40,53 @@ export const uploadTourImages = upload.fields([
 // upload.array(`images`, 5); -> single fields and multiple images
 
 export const resizeTourImages = catchAsync(async (req, res, next) => {
-  if (!req.files.imageCover || !req.files.images) return next();
+  if (!req.files) return next();
+
+  // Generate a unique tour ID for new tours (use timestamp as fallback)
+  const tourId = req.params.id || `new-${Date.now()}`;
 
   // 1. Image Cover:
-  req.body.imageCover = `tour-${req.params.id}-${Date.now()}-cover.jpeg`;
-  await sharp(req.files.imageCover[0].buffer)
-    .resize(2000, 1333)
-    .toFormat('jpeg')
-    .jpeg({ quality: 90 })
-    .toFile(`public/img/tours/${req.body.imageCover}`);
+  if (req.files.imageCover) {
+    req.body.imageCover = `tour-${tourId}-${Date.now()}-cover.jpeg`;
+    await sharp(req.files.imageCover[0].buffer)
+      .resize(2000, 1333)
+      .toFormat('jpeg')
+      .jpeg({ quality: 90 })
+      .toFile(`public/img/tours/${req.body.imageCover}`);
+  }
 
   // 2. Images
-  req.body.images = [];
+  if (req.files.images) {
+    req.body.images = [];
 
-  await Promise.all(
-    req.files.images.map(async (file, i) => {
-      const filename = `tour-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
+    await Promise.all(
+      req.files.images.map(async (file, i) => {
+        const filename = `tour-${tourId}-${Date.now()}-${i + 1}.jpeg`;
 
-      await sharp(req.files.images[i].buffer)
-        .resize(2000, 1333)
-        .toFormat('jpeg')
-        .jpeg({ quality: 90 })
-        .toFile(`public/img/tours/${filename}`);
+        await sharp(req.files.images[i].buffer)
+          .resize(2000, 1333)
+          .toFormat('jpeg')
+          .jpeg({ quality: 90 })
+          .toFile(`public/img/tours/${filename}`);
 
-      req.body.images.push(filename);
-    }),
-  );
+        req.body.images.push(filename);
+      }),
+    );
+  }
+
+  // Parse startLocation if it's a JSON string
+  if (req.body.startLocation && typeof req.body.startLocation === 'string') {
+    try {
+      req.body.startLocation = JSON.parse(req.body.startLocation);
+    } catch (err) {
+      // Leave as is if parsing fails
+    }
+  }
+
+  // Parse startDates if it's a string
+  if (req.body.startDates && typeof req.body.startDates === 'string') {
+    req.body.startDates = [req.body.startDates];
+  }
 
   next();
 });

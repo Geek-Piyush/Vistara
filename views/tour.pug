@@ -73,6 +73,30 @@ block content
       each review in tour.reviews
         +reviewCard(review)
 
+  //- Review Form Section
+  if user
+    section.section-review-form
+      .review-form-container
+        h2.heading-secondary.ma-bt-lg Write a Review
+        form.form.form--review(data-tour-id=tour.id)
+          .review-form-horizontal
+            .review-form-left
+              .star-rating-container
+                label.form__label Your Rating
+                .star-rating(data-rating='5')
+                  span.star(data-value='1') ★
+                  span.star(data-value='2') ★
+                  span.star(data-value='3') ★
+                  span.star(data-value='4') ★
+                  span.star(data-value='5') ★
+                input#rating(type='hidden', value='5')
+            .review-form-right
+              .form__group.review-textarea-group
+                label.form__label(for='review') Your Review
+                textarea#review.form__input(placeholder='Share your experience on this tour...', rows='4', required)
+          .form__group.review-submit-group
+            button.btn.btn--green Submit Review
+
   section.section-cta
     .cta
       .cta__img.cta__img--logo

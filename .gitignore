@@ -1,2 +1,26 @@
 node_modules
 config.env
+.env
+*.log
+.DS_Store
+.parcel-cache
+dist
+.cache
+
+# Build artifacts
+public/js/bundle.js.map
+*.map
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Temporary files
+*.tmp
+*.temp

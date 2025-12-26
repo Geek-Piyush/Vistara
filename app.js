@@ -18,6 +18,7 @@ dotenv.config({ path: './config.env' });
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import compression from 'compression';
 
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
@@ -36,16 +37,18 @@ import viewRouter from './routes/viewRoutes.js';
 
 const app = express();
 
-// Allow requests from localhost:8000 (your frontend origin)
-app.use(
-  cors({
-    origin: 'http://localhost:8000', // frontend origin
-    credentials: true, // if you want to send cookies/auth headers
-  }),
-);
+// Trust proxies for secure cookies in production (Heroku, Render, etc.)
+app.set('trust proxy', 1);
 
-// OR allow all origins (less secure, only for dev)
-// app.use(cors());
+// CORS configuration
+const corsOptions = {
+  origin:
+    process.env.NODE_ENV === 'production'
+      ? process.env.FRONTEND_URL || true
+      : 'http://localhost:8000',
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 // Set security HTTP headers
 app.use(
@@ -97,9 +100,16 @@ app.set('views', path.join(__dirname, 'views')); // Your views folder stays the 
 // Serving Static file
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Compression middleware - compress all responses
+app.use(compression());
+
 // Development logging
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
+}
+// Production logging
+if (process.env.NODE_ENV === 'production') {
+  app.use(morgan('combined')); // More detailed logs for production
 }
 
 // Limit the request from same IP

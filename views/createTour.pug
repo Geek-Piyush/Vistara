@@ -1,0 +1,82 @@
+extends base
+
+block content
+  main.main
+    .admin-form-container
+      h2.heading-secondary.ma-bt-lg Create New Tour
+      
+      form.form.form--create-tour(enctype='multipart/form-data')
+        .form__row
+          .form__group
+            label.form__label(for='tour-name') Tour Name *
+            input#tour-name.form__input(type='text', placeholder='e.g., The Forest Hiker', required)
+          .form__group
+            label.form__label(for='tour-slug') URL Slug *
+            input#tour-slug.form__input(type='text', placeholder='e.g., the-forest-hiker', required)
+        
+        .form__row
+          .form__group
+            label.form__label(for='tour-duration') Duration (days) *
+            input#tour-duration.form__input(type='number', min='1', placeholder='7', required)
+          .form__group
+            label.form__label(for='tour-maxGroupSize') Max Group Size *
+            input#tour-maxGroupSize.form__input(type='number', min='1', placeholder='15', required)
+        
+        .form__row
+          .form__group
+            label.form__label(for='tour-difficulty') Difficulty *
+            select#tour-difficulty.form__input(required)
+              option(value='easy') Easy
+              option(value='medium') Medium
+              option(value='difficult') Difficult
+          .form__group
+            label.form__label(for='tour-price') Price ($) *
+            input#tour-price.form__input(type='number', min='0', placeholder='497', required)
+        
+        .form__row
+          .form__group
+            label.form__label(for='tour-priceDiscount') Price Discount ($)
+            input#tour-priceDiscount.form__input(type='number', min='0', placeholder='0')
+        
+        .form__group
+          label.form__label(for='tour-summary') Summary *
+          textarea#tour-summary.form__input(placeholder='Brief summary of the tour...', rows='2', required)
+        
+        .form__group
+          label.form__label(for='tour-description') Description *
+          textarea#tour-description.form__input(placeholder='Full description of the tour...', rows='5', required)
+        
+        .form__row
+          .form__group
+            label.form__label(for='tour-imageCover') Cover Image *
+            input#tour-imageCover.form__input(type='file', name='imageCover', accept='image/*', required)
+        
+        .form__group
+          label.form__label(for='tour-images') Tour Images (up to 3) *
+          input#tour-images.form__input(type='file', name='images', accept='image/*', multiple, required)
+        
+        h3.heading-tertiary.ma-bt-md Start Location
+        .form__row
+          .form__group
+            label.form__label(for='tour-startLocation-description') Location Name *
+            input#tour-startLocation-description.form__input(type='text', placeholder='Miami, USA', required)
+          .form__group
+            label.form__label(for='tour-startLocation-address') Address
+            input#tour-startLocation-address.form__input(type='text', placeholder='301 Biscayne Blvd, Miami, FL')
+        
+        .form__row
+          .form__group
+            label.form__label(for='tour-startLocation-lat') Latitude *
+            input#tour-startLocation-lat.form__input(type='number', step='any', placeholder='25.7617', required)
+          .form__group
+            label.form__label(for='tour-startLocation-lng') Longitude *
+            input#tour-startLocation-lng.form__input(type='number', step='any', placeholder='-80.1918', required)
+        
+        h3.heading-tertiary.ma-bt-md Start Date
+        .form__group
+          label.form__label(for='tour-startDate') First Start Date *
+          input#tour-startDate.form__input(type='date', required)
+        
+        .form__group.ma-bt-md
+          button.btn.btn--green(type='submit') Create Tour
+          a.btn.btn--grey(href='/manage-tours') Cancel

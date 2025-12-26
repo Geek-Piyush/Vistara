@@ -1,0 +1,73 @@
+extends base
+
+block content
+  main.main
+    .user-view
+      nav.user-view__menu
+        ul.side-nav
+          li
+            a(href='/me')
+              svg
+                use(xlink:href='img/icons.svg#icon-settings')
+              | Settings
+          li
+            a(href='/my-tours')
+              svg
+                use(xlink:href='img/icons.svg#icon-briefcase')
+              | My bookings
+          li.side-nav--active
+            a(href='/my-reviews')
+              svg
+                use(xlink:href='img/icons.svg#icon-star')
+              | My reviews
+          li
+            a(href='#')
+              svg
+                use(xlink:href='img/icons.svg#icon-credit-card')
+              | Billing
+        - if (user.role === 'admin')
+          .admin-nav
+            h5.admin-nav__heading Admin
+            ul.side-nav
+              li
+                a(href='/manage-tours')
+                  svg
+                    use(xlink:href='img/icons.svg#icon-map')
+                  | Manage tours
+              li
+                a(href='/manage-users')
+                  svg
+                    use(xlink:href='img/icons.svg#icon-users')
+                  | Manage users
+              li
+                a(href='/manage-reviews')
+                  svg
+                    use(xlink:href='img/icons.svg#icon-star')
+                  | Manage reviews
+              li
+                a(href='/manage-bookings')
+                  svg
+                    use(xlink:href='img/icons.svg#icon-briefcase')
+                  | Manage bookings
+
+      .user-view__content
+        h2.heading-secondary.ma-bt-lg My Reviews
+
+        if reviews && reviews.length > 0
+          .reviews-list
+            each review in reviews
+              .review-item
+                .review-item__tour
+                  img.review-item__img(src=`/img/tours/${review.tour.imageCover}`, alt=`${review.tour.name}`)
+                  h3.review-item__title= review.tour.name
+                .review-item__content
+                  .review-item__rating
+                    each star in [1, 2, 3, 4, 5]
+                      svg.reviews__star(class=`reviews__star--${review.rating >= star ? 'active' : 'inactive'}`)
+                        use(xlink:href='/img/icons.svg#icon-star')
+                  p.review-item__text= review.review
+                .review-item__actions
+                  button.btn.btn--small.btn--green.btn-edit-review(data-review-id=review.id) Edit
+                  button.btn.btn--small.btn--red.btn-delete-review(data-review-id=review.id) Delete
+        else
+          p.no-data You haven't written any reviews yet. Book a tour and share your experience!

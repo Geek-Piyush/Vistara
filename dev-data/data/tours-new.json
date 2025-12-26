@@ -1,0 +1,699 @@
+[
+  {
+    "startLocation": {
+      "description": "New Delhi, India",
+      "type": "Point",
+      "coordinates": [77.209, 28.6139],
+      "address": "Connaught Place, New Delhi, India"
+    },
+    "ratingsAverage": 4.9,
+    "ratingsQuantity": 12,
+    "images": ["tour-1-1.jpg", "tour-1-2.jpg", "tour-1-3.jpg"],
+    "startDates": [
+      "2025-03-15T09:00:00.000Z",
+      "2025-10-20T09:00:00.000Z",
+      "2026-03-15T09:00:00.000Z"
+    ],
+    "_id": "6c88fa8cf4afda39709c2001",
+    "name": "The Golden Triangle Explorer",
+    "duration": 7,
+    "maxGroupSize": 15,
+    "difficulty": "easy",
+    "guides": ["6c8a1dfa2f8fb814b56fa101", "6c8a1dfa2f8fb814b56fa103"],
+    "price": 799,
+    "summary": "Experience the magical journey through Delhi, Agra, and Jaipur - India's iconic Golden Triangle",
+    "description": "Embark on an unforgettable journey through India's Golden Triangle, visiting the historic cities of Delhi, Agra, and Jaipur. Witness the magnificent Taj Mahal at sunrise, explore the ancient forts of Rajasthan, and immerse yourself in the vibrant culture of India.\nFrom the bustling streets of Old Delhi to the serene beauty of the Amber Fort, this tour offers a perfect blend of history, culture, and architectural marvels that have stood the test of time.",
+    "imageCover": "tour-1-cover.jpg",
+    "locations": [
+      {
+        "_id": "6c88fa8cf4afda39709c2002",
+        "description": "Red Fort, Delhi",
+        "type": "Point",
+        "coordinates": [77.241, 28.6562],
+        "day": 1
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2003",
+        "description": "Taj Mahal, Agra",
+        "type": "Point",
+        "coordinates": [78.0421, 27.1751],
+        "day": 3
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2004",
+        "description": "Amber Fort, Jaipur",
+        "type": "Point",
+        "coordinates": [75.8513, 26.9855],
+        "day": 5
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2005",
+        "description": "Hawa Mahal, Jaipur",
+        "type": "Point",
+        "coordinates": [75.8267, 26.9239],
+        "day": 6
+      }
+    ]
+  },
+  {
+    "startLocation": {
+      "description": "Leh, Ladakh, India",
+      "type": "Point",
+      "coordinates": [77.5771, 34.1526],
+      "address": "Leh Main Bazaar, Ladakh, India"
+    },
+    "ratingsAverage": 4.8,
+    "ratingsQuantity": 8,
+    "images": ["tour-2-1.jpg", "tour-2-2.jpg", "tour-2-3.jpg"],
+    "startDates": [
+      "2025-06-10T09:00:00.000Z",
+      "2025-07-15T09:00:00.000Z",
+      "2026-06-10T09:00:00.000Z"
+    ],
+    "_id": "6c88fa8cf4afda39709c2010",
+    "name": "Ladakh Mountain Adventure",
+    "duration": 10,
+    "maxGroupSize": 12,
+    "difficulty": "difficult",
+    "guides": [
+      "6c8a1dfa2f8fb814b56fa101",
+      "6c8a1dfa2f8fb814b56fa104",
+      "6c8a1dfa2f8fb814b56fa105"
+    ],
+    "price": 1499,
+    "summary": "Conquer the breathtaking passes of Ladakh and experience the roof of the world",
+    "description": "Journey to the land of high passes - Ladakh. This adventure takes you through some of the world's highest motorable roads, ancient Buddhist monasteries, and stunning landscapes that will leave you speechless.\nFrom the crystal-clear Pangong Lake to the mesmerizing Nubra Valley, experience the raw beauty of the Himalayas and connect with the unique Ladakhi culture.",
+    "imageCover": "tour-2-cover.jpg",
+    "locations": [
+      {
+        "_id": "6c88fa8cf4afda39709c2011",
+        "description": "Leh Palace",
+        "type": "Point",
+        "coordinates": [77.5857, 34.1642],
+        "day": 1
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2012",
+        "description": "Khardung La Pass",
+        "type": "Point",
+        "coordinates": [77.6025, 34.2878],
+        "day": 3
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2013",
+        "description": "Pangong Lake",
+        "type": "Point",
+        "coordinates": [78.9254, 33.7595],
+        "day": 5
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2014",
+        "description": "Nubra Valley",
+        "type": "Point",
+        "coordinates": [77.5619, 34.618],
+        "day": 7
+      }
+    ]
+  },
+  {
+    "startLocation": {
+      "description": "Kochi, Kerala, India",
+      "type": "Point",
+      "coordinates": [76.2673, 9.9312],
+      "address": "Fort Kochi, Kerala, India"
+    },
+    "ratingsAverage": 4.7,
+    "ratingsQuantity": 15,
+    "images": ["tour-3-1.jpg", "tour-3-2.jpg", "tour-3-3.jpg"],
+    "startDates": [
+      "2025-09-01T09:00:00.000Z",
+      "2025-12-15T09:00:00.000Z",
+      "2026-09-01T09:00:00.000Z"
+    ],
+    "_id": "6c88fa8cf4afda39709c2020",
+    "name": "Kerala Backwaters Bliss",
+    "duration": 6,
+    "maxGroupSize": 10,
+    "difficulty": "easy",
+    "guides": ["6c8a1dfa2f8fb814b56fa102", "6c8a1dfa2f8fb814b56fa104"],
+    "price": 899,
+    "summary": "Cruise through the serene backwaters of Kerala - God's Own Country",
+    "description": "Experience the tranquility of Kerala's famous backwaters on a traditional houseboat. This tour takes you through the lush green landscapes, coconut groves, and charming villages of Kerala.\nEnjoy Ayurvedic treatments, witness Kathakali performances, and savor the delicious cuisine of South India while floating through the peaceful backwaters.",
+    "imageCover": "tour-3-cover.jpg",
+    "locations": [
+      {
+        "_id": "6c88fa8cf4afda39709c2021",
+        "description": "Chinese Fishing Nets, Kochi",
+        "type": "Point",
+        "coordinates": [76.2424, 9.9639],
+        "day": 1
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2022",
+        "description": "Alleppey Backwaters",
+        "type": "Point",
+        "coordinates": [76.3388, 9.4981],
+        "day": 2
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2023",
+        "description": "Munnar Tea Gardens",
+        "type": "Point",
+        "coordinates": [77.0595, 10.0889],
+        "day": 4
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2024",
+        "description": "Thekkady Wildlife Sanctuary",
+        "type": "Point",
+        "coordinates": [77.1639, 9.6027],
+        "day": 5
+      }
+    ]
+  },
+  {
+    "startLocation": {
+      "description": "Paris, France",
+      "type": "Point",
+      "coordinates": [2.3522, 48.8566],
+      "address": "Champs-Élysées, Paris, France"
+    },
+    "ratingsAverage": 4.9,
+    "ratingsQuantity": 20,
+    "images": ["tour-4-1.jpg", "tour-4-2.jpg", "tour-4-3.jpg"],
+    "startDates": [
+      "2025-04-10T09:00:00.000Z",
+      "2025-08-15T09:00:00.000Z",
+      "2026-04-10T09:00:00.000Z"
+    ],
+    "_id": "6c88fa8cf4afda39709c2030",
+    "name": "European Highlights",
+    "duration": 12,
+    "maxGroupSize": 20,
+    "difficulty": "easy",
+    "guides": ["6c8a1dfa2f8fb814b56fa107", "6c8a1dfa2f8fb814b56fa108"],
+    "price": 2499,
+    "summary": "Discover the best of Europe - from the Eiffel Tower to the Colosseum",
+    "description": "Experience the magic of Europe on this comprehensive tour covering Paris, Amsterdam, and Rome. Visit iconic landmarks, taste exquisite cuisine, and immerse yourself in centuries of history and culture.\nFrom the romantic streets of Paris to the ancient ruins of Rome, this tour showcases the very best that Europe has to offer.",
+    "imageCover": "tour-4-cover.jpg",
+    "locations": [
+      {
+        "_id": "6c88fa8cf4afda39709c2031",
+        "description": "Eiffel Tower, Paris",
+        "type": "Point",
+        "coordinates": [2.2945, 48.8584],
+        "day": 1
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2032",
+        "description": "Louvre Museum, Paris",
+        "type": "Point",
+        "coordinates": [2.3376, 48.8606],
+        "day": 2
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2033",
+        "description": "Anne Frank House, Amsterdam",
+        "type": "Point",
+        "coordinates": [4.884, 52.3752],
+        "day": 5
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2034",
+        "description": "Colosseum, Rome",
+        "type": "Point",
+        "coordinates": [12.4924, 41.8902],
+        "day": 9
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2035",
+        "description": "Vatican City",
+        "type": "Point",
+        "coordinates": [12.4534, 41.9029],
+        "day": 10
+      }
+    ]
+  },
+  {
+    "startLocation": {
+      "description": "Tokyo, Japan",
+      "type": "Point",
+      "coordinates": [139.6917, 35.6895],
+      "address": "Shibuya, Tokyo, Japan"
+    },
+    "ratingsAverage": 4.8,
+    "ratingsQuantity": 18,
+    "images": ["tour-5-1.jpg", "tour-5-2.jpg", "tour-5-3.jpg"],
+    "startDates": [
+      "2025-03-25T09:00:00.000Z",
+      "2025-11-01T09:00:00.000Z",
+      "2026-03-25T09:00:00.000Z"
+    ],
+    "_id": "6c88fa8cf4afda39709c2040",
+    "name": "Japan Cherry Blossom Trail",
+    "duration": 10,
+    "maxGroupSize": 15,
+    "difficulty": "medium",
+    "guides": ["6c8a1dfa2f8fb814b56fa106", "6c8a1dfa2f8fb814b56fa108"],
+    "price": 2999,
+    "summary": "Experience Japan's iconic cherry blossom season and ancient traditions",
+    "description": "Witness the magical cherry blossom season in Japan. This tour takes you from bustling Tokyo to historic Kyoto, through ancient temples, serene gardens, and modern marvels.\nExperience the perfect blend of traditional and contemporary Japan while enjoying world-class cuisine and warm hospitality.",
+    "imageCover": "tour-5-cover.jpg",
+    "locations": [
+      {
+        "_id": "6c88fa8cf4afda39709c2041",
+        "description": "Shibuya Crossing, Tokyo",
+        "type": "Point",
+        "coordinates": [139.7016, 35.6595],
+        "day": 1
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2042",
+        "description": "Mount Fuji",
+        "type": "Point",
+        "coordinates": [138.7274, 35.3606],
+        "day": 3
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2043",
+        "description": "Fushimi Inari Shrine, Kyoto",
+        "type": "Point",
+        "coordinates": [135.7727, 34.9671],
+        "day": 6
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2044",
+        "description": "Kinkaku-ji Temple, Kyoto",
+        "type": "Point",
+        "coordinates": [135.7292, 35.0394],
+        "day": 7
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2045",
+        "description": "Hiroshima Peace Memorial",
+        "type": "Point",
+        "coordinates": [132.4536, 34.3955],
+        "day": 9
+      }
+    ]
+  },
+  {
+    "startLocation": {
+      "description": "New York City, USA",
+      "type": "Point",
+      "coordinates": [-74.006, 40.7128],
+      "address": "Times Square, Manhattan, NY, USA"
+    },
+    "ratingsAverage": 4.7,
+    "ratingsQuantity": 25,
+    "images": ["tour-6-1.jpg", "tour-6-2.jpg", "tour-6-3.jpg"],
+    "startDates": [
+      "2025-05-15T09:00:00.000Z",
+      "2025-09-20T09:00:00.000Z",
+      "2026-05-15T09:00:00.000Z"
+    ],
+    "_id": "6c88fa8cf4afda39709c2050",
+    "name": "American Dream Tour",
+    "duration": 14,
+    "maxGroupSize": 20,
+    "difficulty": "easy",
+    "guides": ["6c8a1dfa2f8fb814b56fa108", "6c8a1dfa2f8fb814b56fa107"],
+    "price": 3499,
+    "summary": "Coast to coast adventure through America's most iconic destinations",
+    "description": "From the bright lights of New York to the sunny beaches of California, experience the diversity and grandeur of America. Visit world-famous landmarks, stunning national parks, and vibrant cities.\nThis comprehensive tour covers the best of the East and West coasts, offering unforgettable experiences at every stop.",
+    "imageCover": "tour-6-cover.jpg",
+    "locations": [
+      {
+        "_id": "6c88fa8cf4afda39709c2051",
+        "description": "Statue of Liberty, New York",
+        "type": "Point",
+        "coordinates": [-74.0445, 40.6892],
+        "day": 1
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2052",
+        "description": "Grand Canyon, Arizona",
+        "type": "Point",
+        "coordinates": [-112.1401, 36.0544],
+        "day": 5
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2053",
+        "description": "Las Vegas Strip, Nevada",
+        "type": "Point",
+        "coordinates": [-115.1728, 36.1147],
+        "day": 8
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2054",
+        "description": "Golden Gate Bridge, San Francisco",
+        "type": "Point",
+        "coordinates": [-122.4783, 37.8199],
+        "day": 11
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2055",
+        "description": "Hollywood Sign, Los Angeles",
+        "type": "Point",
+        "coordinates": [-118.3217, 34.1341],
+        "day": 13
+      }
+    ]
+  },
+  {
+    "startLocation": {
+      "description": "Varanasi, India",
+      "type": "Point",
+      "coordinates": [82.9739, 25.3176],
+      "address": "Dashashwamedh Ghat, Varanasi, India"
+    },
+    "ratingsAverage": 4.9,
+    "ratingsQuantity": 10,
+    "images": ["tour-7-1.jpg", "tour-7-2.jpg", "tour-7-3.jpg"],
+    "startDates": [
+      "2025-02-20T09:00:00.000Z",
+      "2025-11-10T09:00:00.000Z",
+      "2026-02-20T09:00:00.000Z"
+    ],
+    "_id": "6c88fa8cf4afda39709c2060",
+    "name": "Spiritual India Journey",
+    "duration": 8,
+    "maxGroupSize": 12,
+    "difficulty": "medium",
+    "guides": ["6c8a1dfa2f8fb814b56fa102", "6c8a1dfa2f8fb814b56fa103"],
+    "price": 999,
+    "summary": "Discover the spiritual heart of India - from Varanasi to Bodh Gaya",
+    "description": "Embark on a transformative spiritual journey through India's most sacred destinations. Witness the mesmerizing Ganga Aarti in Varanasi, meditate where Buddha attained enlightenment, and explore ancient temples.\nThis tour offers deep insights into India's rich spiritual heritage and provides opportunities for personal reflection and growth.",
+    "imageCover": "tour-7-cover.jpg",
+    "locations": [
+      {
+        "_id": "6c88fa8cf4afda39709c2061",
+        "description": "Dashashwamedh Ghat, Varanasi",
+        "type": "Point",
+        "coordinates": [83.0106, 25.305],
+        "day": 1
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2062",
+        "description": "Sarnath",
+        "type": "Point",
+        "coordinates": [83.0217, 25.3814],
+        "day": 3
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2063",
+        "description": "Bodh Gaya",
+        "type": "Point",
+        "coordinates": [84.9869, 24.6961],
+        "day": 5
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2064",
+        "description": "Nalanda University Ruins",
+        "type": "Point",
+        "coordinates": [85.445, 25.1362],
+        "day": 7
+      }
+    ]
+  },
+  {
+    "startLocation": {
+      "description": "Bangkok, Thailand",
+      "type": "Point",
+      "coordinates": [100.5018, 13.7563],
+      "address": "Khao San Road, Bangkok, Thailand"
+    },
+    "ratingsAverage": 4.6,
+    "ratingsQuantity": 22,
+    "images": ["tour-8-1.jpg", "tour-8-2.jpg", "tour-8-3.jpg"],
+    "startDates": [
+      "2025-01-15T09:00:00.000Z",
+      "2025-07-20T09:00:00.000Z",
+      "2026-01-15T09:00:00.000Z"
+    ],
+    "_id": "6c88fa8cf4afda39709c2070",
+    "name": "Southeast Asia Explorer",
+    "duration": 15,
+    "maxGroupSize": 18,
+    "difficulty": "medium",
+    "guides": ["6c8a1dfa2f8fb814b56fa106", "6c8a1dfa2f8fb814b56fa105"],
+    "price": 1999,
+    "summary": "Adventure through Thailand, Cambodia, and Vietnam's most stunning destinations",
+    "description": "Explore the wonders of Southeast Asia, from Bangkok's vibrant streets to the ancient temples of Angkor Wat and the stunning Halong Bay. Experience diverse cultures, delicious cuisines, and breathtaking landscapes.\nThis tour offers the perfect mix of adventure, culture, and relaxation across three amazing countries.",
+    "imageCover": "tour-8-cover.jpg",
+    "locations": [
+      {
+        "_id": "6c88fa8cf4afda39709c2071",
+        "description": "Grand Palace, Bangkok",
+        "type": "Point",
+        "coordinates": [100.4914, 13.75],
+        "day": 1
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2072",
+        "description": "Angkor Wat, Cambodia",
+        "type": "Point",
+        "coordinates": [103.867, 13.4125],
+        "day": 5
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2073",
+        "description": "Halong Bay, Vietnam",
+        "type": "Point",
+        "coordinates": [107.0453, 20.9101],
+        "day": 10
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2074",
+        "description": "Hoi An Ancient Town, Vietnam",
+        "type": "Point",
+        "coordinates": [108.338, 15.8801],
+        "day": 13
+      }
+    ]
+  },
+  {
+    "startLocation": {
+      "description": "Goa, India",
+      "type": "Point",
+      "coordinates": [73.8278, 15.4909],
+      "address": "Calangute Beach, Goa, India"
+    },
+    "ratingsAverage": 4.5,
+    "ratingsQuantity": 30,
+    "images": ["tour-9-1.jpg", "tour-9-2.jpg", "tour-9-3.jpg"],
+    "startDates": [
+      "2025-12-20T09:00:00.000Z",
+      "2026-01-05T09:00:00.000Z",
+      "2026-12-20T09:00:00.000Z"
+    ],
+    "_id": "6c88fa8cf4afda39709c2080",
+    "name": "Goa Beach Paradise",
+    "duration": 5,
+    "maxGroupSize": 25,
+    "difficulty": "easy",
+    "guides": ["6c8a1dfa2f8fb814b56fa104", "6c8a1dfa2f8fb814b56fa105"],
+    "price": 599,
+    "summary": "Sun, sand, and Portuguese heritage - experience the best of Goa",
+    "description": "Relax on pristine beaches, explore Portuguese architecture, and experience Goa's vibrant nightlife. This tour covers the best beaches, historic churches, and local markets of India's favorite beach destination.\nEnjoy water sports, delicious seafood, and the unique Goan culture that blends Indian and Portuguese influences.",
+    "imageCover": "tour-9-cover.jpg",
+    "locations": [
+      {
+        "_id": "6c88fa8cf4afda39709c2081",
+        "description": "Calangute Beach",
+        "type": "Point",
+        "coordinates": [73.7551, 15.5449],
+        "day": 1
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2082",
+        "description": "Basilica of Bom Jesus, Old Goa",
+        "type": "Point",
+        "coordinates": [73.9118, 15.5009],
+        "day": 2
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2083",
+        "description": "Dudhsagar Falls",
+        "type": "Point",
+        "coordinates": [74.3145, 15.3144],
+        "day": 3
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2084",
+        "description": "Anjuna Flea Market",
+        "type": "Point",
+        "coordinates": [73.742, 15.5734],
+        "day": 4
+      }
+    ]
+  },
+  {
+    "startLocation": {
+      "description": "Interlaken, Switzerland",
+      "type": "Point",
+      "coordinates": [7.8632, 46.6863],
+      "address": "Höheweg, Interlaken, Switzerland"
+    },
+    "ratingsAverage": 5.0,
+    "ratingsQuantity": 15,
+    "images": ["tour-4-1.jpg", "tour-4-2.jpg", "tour-4-3.jpg"],
+    "startDates": [
+      "2025-06-01T09:00:00.000Z",
+      "2025-12-01T09:00:00.000Z",
+      "2026-06-01T09:00:00.000Z"
+    ],
+    "_id": "6c88fa8cf4afda39709c2090",
+    "name": "Swiss Alps Adventure",
+    "duration": 8,
+    "maxGroupSize": 12,
+    "difficulty": "difficult",
+    "guides": ["6c8a1dfa2f8fb814b56fa107", "6c8a1dfa2f8fb814b56fa108"],
+    "price": 3999,
+    "summary": "Conquer the magnificent Swiss Alps and experience alpine paradise",
+    "description": "Experience the breathtaking beauty of the Swiss Alps. From scenic train rides to challenging hikes, this adventure tour takes you through some of Europe's most stunning mountain landscapes.\nVisit charming Swiss villages, ride the famous Jungfrau Railway, and enjoy world-class skiing or hiking depending on the season.",
+    "imageCover": "tour-4-cover.jpg",
+    "locations": [
+      {
+        "_id": "6c88fa8cf4afda39709c2091",
+        "description": "Jungfraujoch - Top of Europe",
+        "type": "Point",
+        "coordinates": [7.9614, 46.5472],
+        "day": 2
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2092",
+        "description": "Grindelwald",
+        "type": "Point",
+        "coordinates": [8.0413, 46.6243],
+        "day": 3
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2093",
+        "description": "Zermatt & Matterhorn",
+        "type": "Point",
+        "coordinates": [7.7491, 46.0207],
+        "day": 5
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2094",
+        "description": "Lake Geneva",
+        "type": "Point",
+        "coordinates": [6.1432, 46.2044],
+        "day": 7
+      }
+    ]
+  },
+  {
+    "startLocation": {
+      "description": "Rishikesh, India",
+      "type": "Point",
+      "coordinates": [78.2676, 30.0869],
+      "address": "Ram Jhula, Rishikesh, India"
+    },
+    "ratingsAverage": 4.7,
+    "ratingsQuantity": 18,
+    "images": ["tour-2-1.jpg", "tour-2-2.jpg", "tour-2-3.jpg"],
+    "startDates": [
+      "2025-04-01T09:00:00.000Z",
+      "2025-10-01T09:00:00.000Z",
+      "2026-04-01T09:00:00.000Z"
+    ],
+    "_id": "6c88fa8cf4afda39709c2100",
+    "name": "Himalayan Yoga Retreat",
+    "duration": 7,
+    "maxGroupSize": 15,
+    "difficulty": "medium",
+    "guides": ["6c8a1dfa2f8fb814b56fa102", "6c8a1dfa2f8fb814b56fa103"],
+    "price": 1199,
+    "summary": "Rejuvenate your mind and body with yoga in the foothills of the Himalayas",
+    "description": "Immerse yourself in the birthplace of yoga. This retreat combines daily yoga sessions, meditation, and adventure activities in the stunning setting of Rishikesh and surrounding Himalayan towns.\nExperience white water rafting on the Ganges, visit ancient ashrams, and learn from experienced yoga masters in this transformative journey.",
+    "imageCover": "tour-2-cover.jpg",
+    "locations": [
+      {
+        "_id": "6c88fa8cf4afda39709c2101",
+        "description": "Laxman Jhula, Rishikesh",
+        "type": "Point",
+        "coordinates": [78.3204, 30.1258],
+        "day": 1
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2102",
+        "description": "Beatles Ashram",
+        "type": "Point",
+        "coordinates": [78.3162, 30.1191],
+        "day": 2
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2103",
+        "description": "Haridwar Har Ki Pauri",
+        "type": "Point",
+        "coordinates": [78.1642, 29.9588],
+        "day": 4
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2104",
+        "description": "Mussoorie Hill Station",
+        "type": "Point",
+        "coordinates": [78.0644, 30.4598],
+        "day": 6
+      }
+    ]
+  },
+  {
+    "startLocation": {
+      "description": "Beijing, China",
+      "type": "Point",
+      "coordinates": [116.4074, 39.9042],
+      "address": "Tiananmen Square, Beijing, China"
+    },
+    "ratingsAverage": 4.8,
+    "ratingsQuantity": 14,
+    "images": ["tour-5-1.jpg", "tour-5-2.jpg", "tour-5-3.jpg"],
+    "startDates": [
+      "2025-05-01T09:00:00.000Z",
+      "2025-10-15T09:00:00.000Z",
+      "2026-05-01T09:00:00.000Z"
+    ],
+    "_id": "6c88fa8cf4afda39709c2110",
+    "name": "Ancient China Discovery",
+    "duration": 12,
+    "maxGroupSize": 18,
+    "difficulty": "medium",
+    "guides": ["6c8a1dfa2f8fb814b56fa106", "6c8a1dfa2f8fb814b56fa105"],
+    "price": 2799,
+    "summary": "Walk the Great Wall and explore China's incredible ancient history",
+    "description": "Discover the wonders of ancient China, from the Great Wall to the Terracotta Warriors. This comprehensive tour covers Beijing, Xi'an, and Shanghai, offering insights into China's rich history and modern development.\nExperience traditional Chinese culture, sample regional cuisines, and witness architectural marvels spanning thousands of years.",
+    "imageCover": "tour-5-cover.jpg",
+    "locations": [
+      {
+        "_id": "6c88fa8cf4afda39709c2111",
+        "description": "Great Wall at Mutianyu",
+        "type": "Point",
+        "coordinates": [116.5704, 40.4319],
+        "day": 2
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2112",
+        "description": "Forbidden City, Beijing",
+        "type": "Point",
+        "coordinates": [116.3972, 39.9169],
+        "day": 3
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2113",
+        "description": "Terracotta Warriors, Xi'an",
+        "type": "Point",
+        "coordinates": [109.2785, 34.3841],
+        "day": 6
+      },
+      {
+        "_id": "6c88fa8cf4afda39709c2114",
+        "description": "The Bund, Shanghai",
+        "type": "Point",
+        "coordinates": [121.49, 31.24],
+        "day": 10
+      }
+    ]
+  }
+]

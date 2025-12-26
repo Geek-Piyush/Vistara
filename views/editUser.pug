@@ -1,0 +1,51 @@
+extends base
+
+block content
+  main.main
+    .admin-form-container
+      h2.heading-secondary.ma-bt-lg Edit User
+      
+      .user-profile-header
+        img.user-edit-photo(src=`/img/users/${editUser.photo}`, alt=editUser.name)
+        h3= editUser.name
+      
+      form.form.form--edit-user(data-user-id=editUser.id)
+        .form__group
+          label.form__label(for='edit-user-name') Name
+          input#edit-user-name.form__input(type='text', value=editUser.name, required)
+        
+        .form__group
+          label.form__label(for='edit-user-email') Email
+          input#edit-user-email.form__input(type='email', value=editUser.email, required)
+        
+        .form__group
+          label.form__label(for='edit-user-role') Role
+          select#edit-user-role.form__input
+            option(value='user', selected=(editUser.role === 'user')) User
+            option(value='guide', selected=(editUser.role === 'guide')) Guide
+            option(value='lead-guide', selected=(editUser.role === 'lead-guide')) Lead Guide
+            option(value='admin', selected=(editUser.role === 'admin')) Admin
+        
+        .form__group
+          label.form__label Account Status
+          .toggle-container
+            input#edit-user-active.toggle-checkbox(type='checkbox', checked=editUser.active)
+            label.toggle-label(for='edit-user-active')
+              span.toggle-inner
+              span.toggle-switch
+            span.toggle-text= editUser.active ? 'Active' : 'Inactive'
+        
+        .form__group.user-stats
+          h4.form__label Account Statistics
+          .stats-grid
+            .stat-item
+              span.stat-label Joined
+              span.stat-value= new Date(editUser.createdAt || Date.now()).toLocaleDateString()
+            if editUser.passwordChangedAt
+              .stat-item
+                span.stat-label Password Changed
+                span.stat-value= new Date(editUser.passwordChangedAt).toLocaleDateString()
+        
+        .form__group.ma-bt-md
+          button.btn.btn--green(type='submit') Save Changes
+          a.btn.btn--grey(href='/manage-users') Cancel

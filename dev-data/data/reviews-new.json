@@ -1,0 +1,254 @@
+[
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa301",
+    "review": "Absolutely incredible experience! The Taj Mahal at sunrise was breathtaking. Our guide Arjun was extremely knowledgeable and made the history come alive.",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa201",
+    "tour": "6c88fa8cf4afda39709c2001"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa302",
+    "review": "Perfect introduction to India! The itinerary was well-planned and covered all the highlights. Highly recommend for first-time visitors.",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa202",
+    "tour": "6c88fa8cf4afda39709c2001"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa303",
+    "review": "Jaipur was my favorite part of the trip. The colors, the forts, the people - everything was magical!",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa205",
+    "tour": "6c88fa8cf4afda39709c2001"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa304",
+    "review": "Ladakh is like another planet! The landscapes are surreal. Pangong Lake was the highlight - those colors are unreal.",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa203",
+    "tour": "6c88fa8cf4afda39709c2010"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa305",
+    "review": "Challenging but rewarding. The altitude can be tough, so make sure you acclimatize properly. Views are worth every struggle!",
+    "rating": 4,
+    "user": "6c8a1dfa2f8fb814b56fa204",
+    "tour": "6c88fa8cf4afda39709c2010"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa306",
+    "review": "Best adventure of my life! Khardung La pass was thrilling. The guides ensured we were safe throughout.",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa207",
+    "tour": "6c88fa8cf4afda39709c2010"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa307",
+    "review": "Kerala is truly God's Own Country. The houseboat experience was so peaceful and relaxing.",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa201",
+    "tour": "6c88fa8cf4afda39709c2020"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa308",
+    "review": "Munnar tea gardens were beautiful. The Kathakali show was fascinating. Great food throughout!",
+    "rating": 4,
+    "user": "6c8a1dfa2f8fb814b56fa206",
+    "tour": "6c88fa8cf4afda39709c2020"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa309",
+    "review": "Perfect honeymoon destination. The backwaters are romantic and serene. Ayurvedic massage was heavenly!",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa208",
+    "tour": "6c88fa8cf4afda39709c2020"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa310",
+    "review": "Europe in 12 days - what a whirlwind! Every city was more beautiful than the last. The Colosseum was awe-inspiring.",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa202",
+    "tour": "6c88fa8cf4afda39709c2030"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa311",
+    "review": "Great tour for first-time Europe visitors. Wish we had more time in each city, but understandable for the price.",
+    "rating": 4,
+    "user": "6c8a1dfa2f8fb814b56fa203",
+    "tour": "6c88fa8cf4afda39709c2030"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa312",
+    "review": "Paris was dreamy, Amsterdam was vibrant, Rome was historic. Perfect mix of experiences!",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa210",
+    "tour": "6c88fa8cf4afda39709c2030"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa313",
+    "review": "Cherry blossom season in Japan is pure magic! Kyoto's temples surrounded by pink blossoms - unforgettable.",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa204",
+    "tour": "6c88fa8cf4afda39709c2040"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa314",
+    "review": "Mount Fuji on a clear day was spectacular. Japanese hospitality is unmatched. Food was incredible!",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa205",
+    "tour": "6c88fa8cf4afda39709c2040"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa315",
+    "review": "Well organized tour covering all the highlights. The bullet train ride was an experience in itself!",
+    "rating": 4,
+    "user": "6c8a1dfa2f8fb814b56fa209",
+    "tour": "6c88fa8cf4afda39709c2040"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa316",
+    "review": "America is huge! This tour does a great job covering both coasts. Grand Canyon was breathtaking.",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa201",
+    "tour": "6c88fa8cf4afda39709c2050"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa317",
+    "review": "From NYC to LA - what a journey! Vegas was wild, San Francisco was beautiful. Great variety!",
+    "rating": 4,
+    "user": "6c8a1dfa2f8fb814b56fa206",
+    "tour": "6c88fa8cf4afda39709c2050"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa318",
+    "review": "Golden Gate Bridge at sunset was a highlight. Excellent hotels and transportation throughout.",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa207",
+    "tour": "6c88fa8cf4afda39709c2050"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa319",
+    "review": "Varanasi changed my perspective on life. The evening Ganga Aarti is something everyone should witness.",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa208",
+    "tour": "6c88fa8cf4afda39709c2060"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa320",
+    "review": "Bodh Gaya was peaceful and inspiring. Meditating where Buddha attained enlightenment was surreal.",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa210",
+    "tour": "6c88fa8cf4afda39709c2060"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa321",
+    "review": "A deeply spiritual experience. The guides were respectful and knowledgeable about the religious significance.",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa202",
+    "tour": "6c88fa8cf4afda39709c2060"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa322",
+    "review": "Three countries in 15 days - amazing value! Angkor Wat at sunrise was the highlight.",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa203",
+    "tour": "6c88fa8cf4afda39709c2070"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa323",
+    "review": "Halong Bay cruise was beautiful. Street food in Vietnam was delicious. Would do this again!",
+    "rating": 4,
+    "user": "6c8a1dfa2f8fb814b56fa204",
+    "tour": "6c88fa8cf4afda39709c2070"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa324",
+    "review": "Bangkok's temples, Cambodia's history, Vietnam's beauty - this tour has it all!",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa209",
+    "tour": "6c88fa8cf4afda39709c2070"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa325",
+    "review": "Perfect beach vacation! Great beaches, amazing seafood, and fun nightlife. What more could you ask for?",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa205",
+    "tour": "6c88fa8cf4afda39709c2080"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa326",
+    "review": "Dudhsagar Falls was stunning! Old Goa churches were beautiful. Good mix of beach and culture.",
+    "rating": 4,
+    "user": "6c8a1dfa2f8fb814b56fa206",
+    "tour": "6c88fa8cf4afda39709c2080"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa327",
+    "review": "Great for a short getaway. Beaches are clean, food is great, and the vibe is relaxed.",
+    "rating": 4,
+    "user": "6c8a1dfa2f8fb814b56fa201",
+    "tour": "6c88fa8cf4afda39709c2080"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa328",
+    "review": "Switzerland is expensive but worth every penny! The Alps are majestic. Jungfraujoch was incredible!",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa207",
+    "tour": "6c88fa8cf4afda39709c2090"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa329",
+    "review": "Best views I've ever seen! The Matterhorn is even more impressive in person. Swiss chocolate is divine!",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa208",
+    "tour": "6c88fa8cf4afda39709c2090"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa330",
+    "review": "Challenging hikes with rewarding views. The scenic trains are an experience in themselves. Perfect!",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa210",
+    "tour": "6c88fa8cf4afda39709c2090"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa331",
+    "review": "Found inner peace in Rishikesh. The yoga sessions were transformative. Rafting was thrilling!",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa202",
+    "tour": "6c88fa8cf4afda39709c2100"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa332",
+    "review": "Perfect balance of yoga, meditation, and adventure. Beatles Ashram was interesting. Great food too!",
+    "rating": 4,
+    "user": "6c8a1dfa2f8fb814b56fa203",
+    "tour": "6c88fa8cf4afda39709c2100"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa333",
+    "review": "Came stressed, left rejuvenated. The instructors were excellent. Mussoorie views were stunning!",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa209",
+    "tour": "6c88fa8cf4afda39709c2100"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa334",
+    "review": "Great Wall exceeded all expectations! Walking on ancient history was surreal. Terracotta Warriors amazing!",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa204",
+    "tour": "6c88fa8cf4afda39709c2110"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa335",
+    "review": "China's history is incredible. The Forbidden City is massive! Shanghai's modern skyline was impressive contrast.",
+    "rating": 4,
+    "user": "6c8a1dfa2f8fb814b56fa205",
+    "tour": "6c88fa8cf4afda39709c2110"
+  },
+  {
+    "_id": "6c8a1e1a2f8fb814b56fa336",
+    "review": "Well organized tour covering ancient and modern China. Food was delicious and diverse. Highly recommend!",
+    "rating": 5,
+    "user": "6c8a1dfa2f8fb814b56fa206",
+    "tour": "6c88fa8cf4afda39709c2110"
+  }
+]

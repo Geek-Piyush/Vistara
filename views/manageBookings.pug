@@ -1,0 +1,34 @@
+extends base
+
+block content
+  main.main
+    .admin-container
+      h2.heading-secondary.ma-bt-lg Manage Bookings
+
+      if bookings && bookings.length > 0
+        .admin-table
+          table.table
+            thead
+              tr
+                th User
+                th Tour
+                th Price
+                th Booked At
+                th Actions
+            tbody
+              each booking in bookings
+                tr
+                  td
+                    .table__user
+                      if booking.user
+                        img.table__img.table__img--round(src=`/img/users/${booking.user.photo}`, alt=booking.user.name)
+                        span= booking.user.name
+                      else
+                        span N/A
+                  td= booking.tour ? booking.tour.name : 'N/A'
+                  td= `$${booking.price}`
+                  td= booking.createdAt ? new Date(booking.createdAt).toLocaleDateString() : 'N/A'
+                  td.table__actions
+                    button.btn.btn--small.btn--red.btn-delete-booking(data-booking-id=booking.id) Delete
+      else
+        p.no-data No bookings found.
