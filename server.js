@@ -40,13 +40,9 @@ console.log('🔌 Connecting to MongoDB...');
 console.log('📝 Database URL starts with:', DB.substring(0, 30) + '...');
 
 mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-  .then(() => console.log('DB Connection Successful'));
+  .connect(DB)
+  .then(() => console.log('✅ DB Connection Successful'))
+  .catch((err) => console.error('❌ DB Connection Error:', err.message));
 
 // Start Server
 const port = process.env.PORT || 8000;
