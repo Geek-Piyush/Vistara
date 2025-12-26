@@ -13,10 +13,15 @@ process.on('uncaughtException', (err) => {
 
 dotenv.config({ path: './config.env' });
 
-const DB = process.env.DATABASE.replace(
-  '<PASSWORD>',
-  process.env.DATABASE_PASSWORD,
-);
+// Handle both connection string formats
+let DB;
+if (process.env.DATABASE.includes('<PASSWORD>') && process.env.DATABASE_PASSWORD) {
+  DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
+} else {
+  DB = process.env.DATABASE;
+}
+
+console.log('🔌 Connecting to MongoDB...');
 
 mongoose
   .connect(DB, {
