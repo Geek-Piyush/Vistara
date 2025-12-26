@@ -37,7 +37,11 @@ if (
 DB = DB.trim();
 
 console.log('🔌 Connecting to MongoDB...');
-console.log('📝 Database URL starts with:', DB.substring(0, 30) + '...');
+console.log('📝 Connection string length:', DB.length);
+console.log('📝 Database URL starts with:', `${DB.substring(0, 30)}...`);
+console.log('📝 Database URL ends with:', `...${DB.substring(DB.length - 30)}`);
+console.log('📝 Contains @cluster0:', DB.includes('@cluster0'));
+console.log('📝 Contains /natours:', DB.includes('/natours'));
 
 mongoose
   .connect(DB, {
